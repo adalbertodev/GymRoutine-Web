@@ -3,7 +3,9 @@ import { Exercise } from './Exercise';
 import { ExerciseId } from './ExerciseId';
 
 export interface ExerciseRepository {
-  save(exercise: Exercise): Promise<void>;
+  create(exercise: Exercise): Promise<void>;
+
+  searchAll(): Promise<Nullable<Exercise[]>>;
 
   search(id: ExerciseId): Promise<Nullable<Exercise>>;
 }

@@ -1,4 +1,5 @@
 import compress from 'compression';
+import dotenv from 'dotenv';
 import errorHandler from 'errorhandler';
 import express, { Request, Response } from 'express';
 import Router from 'express-promise-router';
@@ -16,6 +17,7 @@ export class Server {
     this.port = port;
     this.express = express();
 
+    dotenv.config();
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
     this.express.use(helmet.xssFilter());
@@ -29,7 +31,7 @@ export class Server {
 
     registerRoutes(router);
 
-    router.use((err: Error, req: Request, res: Response, next: Function) => {
+    router.use((err: Error, req: Request, res: Response, next: any) => {
       res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
     });
   }

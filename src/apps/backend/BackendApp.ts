@@ -1,6 +1,6 @@
 import { Server } from './server';
 
-export class RutineBackendApp {
+export class BackendApp {
   server?: Server;
 
   async start() {
