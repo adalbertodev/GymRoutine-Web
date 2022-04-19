@@ -1,0 +1,14 @@
+[
+  {
+    "id": "PRBC",
+    "name": "Press Banca",
+    "muscle": "Pectoral",
+    "bar": 20
+  },
+  {
+    "id": "PRBC_INC",
+    "name": "Press Banca Inclinado",
+    "muscle": "Pectoral",
+    "bar": 20
+  }
+]
