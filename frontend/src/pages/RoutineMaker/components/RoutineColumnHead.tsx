@@ -1,6 +1,6 @@
 import React from 'react';
 import { TableCol } from '../styled-components/TableCol';
-import { TableHead } from '../styled-components/TableHead';
+import { TableHeader } from '../styled-components/TableHeader';
 import { TableRow } from '../styled-components/TableRow';
 
 const header = {
@@ -12,16 +12,16 @@ const header = {
 
 const headers = [header, header, header, header, header];
 
-const RutineColumnHead: React.FC = () => {
+const RoutineColumnHead: React.FC = () => {
   return (
     <TableRow>
       {headers.map((header) => {
         return (
           <TableCol>
-            <TableHead>{header.col1}</TableHead>
-            <TableHead>{header.col2}</TableHead>
-            <TableHead>{header.col3}</TableHead>
-            <TableHead>{header.col4}</TableHead>
+            <TableHeader>{header.col1}</TableHeader>
+            <TableHeader>{header.col2}</TableHeader>
+            <TableHeader>{header.col3}</TableHeader>
+            <TableHeader>{header.col4}</TableHeader>
           </TableCol>
         );
       })}
@@ -29,4 +29,4 @@ const RutineColumnHead: React.FC = () => {
   );
 };
 
-export default RutineColumnHead;
+export default RoutineColumnHead;

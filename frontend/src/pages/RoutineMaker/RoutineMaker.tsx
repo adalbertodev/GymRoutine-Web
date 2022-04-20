@@ -1,4 +1,4 @@
-import RutineTable from './components/RutineTable';
+import RoutineTable from './components/RoutineTable';
 import { SaveButton } from './styled-components/SaveButton';
 import html2canvas from 'html2canvas';
 
@@ -20,7 +20,7 @@ const RutineMaker = () => {
 
   return (
     <div className='container'>
-      <RutineTable></RutineTable>
+      <RoutineTable></RoutineTable>
       <SaveButton onClick={downloadTable}>Guardar</SaveButton>
     </div>
   );

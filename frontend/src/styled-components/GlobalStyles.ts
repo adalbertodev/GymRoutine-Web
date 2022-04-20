@@ -6,6 +6,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  :root {
+    --font-primary: #E6E6E6;
+    --table-primary: #0059BD;
+  }
 `;
 
 export default GlobalStyle;

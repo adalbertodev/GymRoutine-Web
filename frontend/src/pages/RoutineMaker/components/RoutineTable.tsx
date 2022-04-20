@@ -2,10 +2,10 @@ import React from 'react';
 import { Table } from '../styled-components/Table';
 import { TableHead } from '../styled-components/TableHead';
 import { TableRow } from '../styled-components/TableRow';
-import RutineColumnHead from './RutineColumnHead';
-import RutineRow, { rowCols } from './RutineRow';
+import RoutineColumnHead from './RoutineColumnHead';
+import RoutineRow, { rowCols } from './RoutineRow';
 
-const RutineTable: React.FC = () => {
+const RoutineTable: React.FC = () => {
   const row1: rowCols = {
     col1: {
       exercise: 'Press',
@@ -48,11 +48,26 @@ const RutineTable: React.FC = () => {
         <TableHead>Jueves</TableHead>
         <TableHead>Viernes</TableHead>
       </TableRow>
-      <RutineColumnHead />
-      <RutineRow columns={row1}></RutineRow>
-      <RutineRow columns={row1}></RutineRow>
+
+      <RoutineColumnHead />
+
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
+      <RoutineRow />
     </Table>
   );
 };
 
-export default RutineTable;
+export default RoutineTable;
