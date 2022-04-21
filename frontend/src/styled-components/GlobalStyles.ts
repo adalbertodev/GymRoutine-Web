@@ -9,7 +9,11 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     --font-primary: #E6E6E6;
+
     --table-primary: #0059BD;
+    --table-shadows: rgba(65, 27, 0, 0.75);
+
+    --boton-save: #00BD59;
   }
 `;
 
