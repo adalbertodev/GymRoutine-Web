@@ -1,5 +1,5 @@
 import React from 'react';
-import { Exercise } from '../entities/Exercise';
+import Exercise from '../entities/Exercise';
 import { TableRow } from '../styled-components/TableRow';
 import RoutineColumn, { column } from './RoutineColumn';
 

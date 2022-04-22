@@ -10,14 +10,14 @@ const header = {
   col4: 'P'
 };
 
-const headers = [header, header, header, header, header];
+const headers = [1, 2, 3, 4, 5];
 
 const RoutineColumnHead: React.FC = () => {
   return (
     <TableRow>
-      {headers.map((header) => {
+      {headers.map((id) => {
         return (
-          <TableCol>
+          <TableCol key={id}>
             <TableHeader>{header.col1}</TableHeader>
             <TableHeader>{header.col2}</TableHeader>
             <TableHeader>{header.col3}</TableHeader>
