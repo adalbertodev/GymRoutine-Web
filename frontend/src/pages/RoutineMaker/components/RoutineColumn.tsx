@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { TextField, Autocomplete } from '@mui/material';
 import { TableCell } from '../styled-components/Table/TableCell';
 
 interface columnRow {
@@ -13,21 +13,27 @@ export interface column {
 }
 
 const RoutineColumn: React.FC<columnRow> = (props) => {
+  const options = [
+    { label: 'Press Banca', id: 1, muscle: 'Pectoral' },
+    { label: 'Dominadas', id: 2, muscle: 'Espalda' },
+    { label: 'Peso Muerto', id: 3, muscle: 'Piernas' },
+    { label: 'Sentadillas', id: 4, muscle: 'Piernas' }
+  ];
+
   return (
     <TableCell>
       <div className='StyledCellGrid'>
-        <TextField
-          id='standard-basic'
-          variant='standard'
-          // value={
-          //   props.columnRow?.exercise !== undefined
-          //     ? props.columnRow.exercise
-          //     : ''
-          // }
+        <Autocomplete
+          id='disable-close-on-select'
+          disableClearable
+          freeSolo
+          selectOnFocus
+          options={options}
+          groupBy={(option) => option.muscle}
+          renderInput={(params) => <TextField {...params} variant='standard' />}
         />
 
         <TextField
-          id='standard-basic'
           variant='standard'
           // value={
           //   props.columnRow?.series !== undefined ? props.columnRow.series : ''
@@ -35,7 +41,6 @@ const RoutineColumn: React.FC<columnRow> = (props) => {
         />
 
         <TextField
-          id='standard-basic'
           variant='standard'
           // value={
           //   props.columnRow?.repetitions !== undefined
@@ -45,7 +50,6 @@ const RoutineColumn: React.FC<columnRow> = (props) => {
         />
 
         <TextField
-          id='standard-basic'
           variant='standard'
           // value={
           //   props.columnRow?.repetitions !== undefined
