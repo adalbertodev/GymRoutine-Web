@@ -1,13 +1,14 @@
 import React from 'react';
-import { getExercises } from '../ExerciseAPI';
-import { Table } from '../styled-components/Table';
-import { TableBody } from '../styled-components/TableBody';
-import { TableContainer } from '../styled-components/TableContainer';
-import { TableHead } from '../styled-components/TableHead';
-import { TableHeadCell } from '../styled-components/TableHeadCell';
-import { TableRow } from '../styled-components/TableRow';
+// import { getExercises } from '../ExerciseAPI';
+import { Table } from '../styled-components/Table/Table';
+import { TableBody } from '../styled-components/Table/TableBody';
+import { TableContainer } from '../styled-components/Table/TableContainer';
+import { TableHead } from '../styled-components/Table/TableHead';
+import { TableHeadCell } from '../styled-components/Table/TableHeadCell';
+import { TableRow } from '../styled-components/Table/TableRow';
 import RoutineColumnHead from './RoutineColumnHead';
 import RoutineRow from './RoutineRow';
+import './test.css';
 
 const RoutineTable: React.FC = () => {
   // const exercises = async () => {
@@ -23,7 +24,7 @@ const RoutineTable: React.FC = () => {
           <TableRow>
             <TableHeadCell>Lunes</TableHeadCell>
             <TableHeadCell>Martes</TableHeadCell>
-            <TableHeadCell>Miercoles</TableHeadCell>
+            <TableHeadCell>Miércoles</TableHeadCell>
             <TableHeadCell>Jueves</TableHeadCell>
             <TableHeadCell>Viernes</TableHeadCell>
           </TableRow>

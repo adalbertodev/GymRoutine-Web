@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { TableCell } from '../styled-components/TableCell';
+import { TableCell } from '../styled-components/Table/TableCell';
 
 interface columnRow {
   columnRow?: column;

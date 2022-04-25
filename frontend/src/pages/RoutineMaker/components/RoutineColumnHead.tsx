@@ -1,9 +1,6 @@
 import React from 'react';
-import { TableCell } from '../styled-components/TableCell';
-import { TableCol } from '../styled-components/TableCol';
-import { TableHeadCell } from '../styled-components/TableHeadCell';
-import { TableHeader } from '../styled-components/TableHeader';
-import { TableRow } from '../styled-components/TableRow';
+import { TableHeadCell } from '../styled-components/Table/TableHeadCell';
+import { TableRow } from '../styled-components/Table/TableRow';
 
 const header = {
   col1: 'Ejercicio',

@@ -4,7 +4,21 @@
 }
 
 .css-1ptx2yq-MuiInputBase-root-MuiInput-root:before {
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+div:first-of-type > .css-1ptx2yq-MuiInputBase-root-MuiInput-root:before {
+  border-left: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+div:last-of-type > .css-1ptx2yq-MuiInputBase-root-MuiInput-root:before {
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* div:first-of-type > div > .css-1ptx2yq-MuiInputBase-root-MuiInput-root:before {
   border-left: 1px solid rgba(0, 0, 0, 0.42);
   border-right: 1px solid rgba(0, 0, 0, 0.42);
   height: 100%;
-}
+} */
