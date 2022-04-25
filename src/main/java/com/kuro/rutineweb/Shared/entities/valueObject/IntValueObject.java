@@ -4,14 +4,14 @@ import lombok.Getter;
 
 public class IntValueObject {
     @Getter
-    private int value;
+    private Integer value;
 
-    public IntValueObject(int value) {
+    public IntValueObject(Integer value) {
         this.value = value;
     }
 
     public boolean equalsTo(IntValueObject other) {
-        return value == other.value;
+        return value.equals(other.value);
     }
 
     public boolean isBiggerThan(IntValueObject other) {

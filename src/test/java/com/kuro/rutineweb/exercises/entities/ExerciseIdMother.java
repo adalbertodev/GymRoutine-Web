@@ -1,5 +1,6 @@
 package com.kuro.rutineweb.exercises.entities;
 
+import com.kuro.rutineweb.Shared.entities.ExerciseId;
 import com.kuro.rutineweb.Shared.entities.WordMother;
 
 public class ExerciseIdMother {

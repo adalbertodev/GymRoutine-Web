@@ -1,6 +1,7 @@
 package com.kuro.rutineweb.exercises.entities;
 
 import com.kuro.rutineweb.Shared.entities.DataItem;
+import com.kuro.rutineweb.Shared.entities.ExerciseId;
 import lombok.Getter;
 
 

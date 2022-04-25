@@ -2,7 +2,7 @@ package com.kuro.rutineweb.exercises.repository;
 
 import com.kuro.rutineweb.Shared.repository.PostgreRepository;
 import com.kuro.rutineweb.exercises.entities.Exercise;
-import com.kuro.rutineweb.exercises.entities.ExerciseId;
+import com.kuro.rutineweb.Shared.entities.ExerciseId;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -97,14 +97,14 @@ public class PostgreExerciseRepository extends PostgreRepository<Exercise> imple
     public void deleteById(String id) throws SQLException {
         ExerciseId exerciseId = new ExerciseId(id);
         String query = "" +
-                "DELETE FROM exercises WHERE id = '" + exerciseId + "';";
+                "DELETE FROM " + tableName() + " WHERE id = '" + exerciseId + "';";
         getModelByQuery(query);
     }
 
     @Override
     public void delete(Exercise exercise) throws SQLException {
         String query = "" +
-                "DELETE FROM exercises WHERE id = '" + exercise.getId() + "';";
+                "DELETE FROM " + tableName() + " WHERE id = '" + exercise.getId() + "';";
         getModelByQuery(query);
     }
 

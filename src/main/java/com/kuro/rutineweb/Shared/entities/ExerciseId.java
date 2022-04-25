@@ -1,4 +1,4 @@
-package com.kuro.rutineweb.exercises.entities;
+package com.kuro.rutineweb.Shared.entities;
 
 import com.kuro.rutineweb.Shared.entities.valueObject.InvalidArgumentError;
 import com.kuro.rutineweb.Shared.entities.valueObject.StringValueObject;
