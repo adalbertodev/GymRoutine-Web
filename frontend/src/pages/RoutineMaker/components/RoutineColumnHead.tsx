@@ -1,5 +1,7 @@
 import React from 'react';
+import { TableCell } from '../styled-components/TableCell';
 import { TableCol } from '../styled-components/TableCol';
+import { TableHeadCell } from '../styled-components/TableHeadCell';
 import { TableHeader } from '../styled-components/TableHeader';
 import { TableRow } from '../styled-components/TableRow';
 
@@ -17,12 +19,14 @@ const RoutineColumnHead: React.FC = () => {
     <TableRow>
       {headers.map((id) => {
         return (
-          <TableCol key={id}>
-            <TableHeader>{header.col1}</TableHeader>
-            <TableHeader>{header.col2}</TableHeader>
-            <TableHeader>{header.col3}</TableHeader>
-            <TableHeader>{header.col4}</TableHeader>
-          </TableCol>
+          <th key={id}>
+            <div className='StyledCellGrid'>
+              <TableHeadCell>{header.col1}</TableHeadCell>
+              <TableHeadCell>{header.col2}</TableHeadCell>
+              <TableHeadCell>{header.col3}</TableHeadCell>
+              <TableHeadCell>{header.col4}</TableHeadCell>
+            </div>
+          </th>
         );
       })}
     </TableRow>

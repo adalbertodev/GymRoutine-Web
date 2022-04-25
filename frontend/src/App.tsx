@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RoutineMaker from './pages/RoutineMaker/RoutineMaker';
+import RoutineMakerUI from './pages/RoutineMaker/RoutineMaker_UI';
 import GlobalStyle from './styled-components/GlobalStyles';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<RoutineMaker />} />
+          <Route path='/ui' element={<RoutineMakerUI />} />
         </Routes>
       </BrowserRouter>
     </>
