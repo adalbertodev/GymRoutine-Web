@@ -8,7 +8,6 @@ import { TableHeadCell } from '../styled-components/Table/TableHeadCell';
 import { TableRow } from '../styled-components/Table/TableRow';
 import RoutineColumnHead from './RoutineColumnHead';
 import RoutineRow from './RoutineRow';
-import './test.css';
 
 const RoutineTable: React.FC = () => {
   // const exercises = async () => {
