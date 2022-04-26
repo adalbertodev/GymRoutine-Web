@@ -1,5 +1,5 @@
-import { TableCol } from '../styled-components/TableCol';
-import { TableInput } from '../styled-components/TableInput';
+import { TextField, Autocomplete } from '@mui/material';
+import { TableCell } from '../styled-components/Table/TableCell';
 
 interface columnRow {
   columnRow?: column;
@@ -13,42 +13,52 @@ export interface column {
 }
 
 const RoutineColumn: React.FC<columnRow> = (props) => {
+  const options = [
+    { label: 'Press Banca', id: 1, muscle: 'Pectoral' },
+    { label: 'Dominadas', id: 2, muscle: 'Espalda' },
+    { label: 'Peso Muerto', id: 3, muscle: 'Piernas' },
+    { label: 'Sentadillas', id: 4, muscle: 'Piernas' }
+  ];
+
   return (
-    <TableCol>
-      <TableInput
-        type='text'
-        // value={
-        //   props.columnRow?.exercise !== undefined
-        //     ? props.columnRow.exercise
-        //     : ''
-        // }
-      />
+    <TableCell>
+      <div className='StyledCellGrid'>
+        <Autocomplete
+          id='disable-close-on-select'
+          disableClearable
+          freeSolo
+          selectOnFocus
+          options={options}
+          groupBy={(option) => option.muscle}
+          renderInput={(params) => <TextField {...params} variant='standard' />}
+        />
 
-      <TableInput
-        type='text'
-        // value={
-        //   props.columnRow?.series !== undefined ? props.columnRow.series : ''
-        // }
-      />
+        <TextField
+          variant='standard'
+          // value={
+          //   props.columnRow?.series !== undefined ? props.columnRow.series : ''
+          // }
+        />
 
-      <TableInput
-        type='text'
-        // value={
-        //   props.columnRow?.repetitions !== undefined
-        //     ? props.columnRow.repetitions
-        //     : ''
-        // }
-      />
+        <TextField
+          variant='standard'
+          // value={
+          //   props.columnRow?.repetitions !== undefined
+          //     ? props.columnRow.repetitions
+          //     : ''
+          // }
+        />
 
-      <TableInput
-        type='text'
-        // value={
-        //   props.columnRow?.repetitions !== undefined
-        //     ? props.columnRow.weight + ' kg'
-        //     : ''
-        // }
-      />
-    </TableCol>
+        <TextField
+          variant='standard'
+          // value={
+          //   props.columnRow?.repetitions !== undefined
+          //     ? props.columnRow.weight + ' kg'
+          //     : ''
+          // }
+        />
+      </div>
+    </TableCell>
   );
 };
 

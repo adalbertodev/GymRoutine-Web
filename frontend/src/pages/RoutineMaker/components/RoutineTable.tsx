@@ -1,46 +1,55 @@
 import React from 'react';
-import { getExercises } from '../ExerciseAPI';
-import { Table } from '../styled-components/Table';
-import { TableHead } from '../styled-components/TableHead';
-import { TableRow } from '../styled-components/TableRow';
+// import { getExercises } from '../ExerciseAPI';
+import { Table } from '../styled-components/Table/Table';
+import { TableBody } from '../styled-components/Table/TableBody';
+import { TableContainer } from '../styled-components/Table/TableContainer';
+import { TableHead } from '../styled-components/Table/TableHead';
+import { TableHeadCell } from '../styled-components/Table/TableHeadCell';
+import { TableRow } from '../styled-components/Table/TableRow';
 import RoutineColumnHead from './RoutineColumnHead';
 import RoutineRow from './RoutineRow';
+import './test.css';
 
 const RoutineTable: React.FC = () => {
-  const exercises = async () => {
-    console.log(await getExercises());
-  };
+  // const exercises = async () => {
+  //   console.log(await getExercises());
+  // };
 
-  exercises();
+  // exercises();
 
   return (
-    <Table id='rutineTable'>
-      <TableRow>
-        <TableHead>Lunes</TableHead>
-        <TableHead>Martes</TableHead>
-        <TableHead>Miercoles</TableHead>
-        <TableHead>Jueves</TableHead>
-        <TableHead>Viernes</TableHead>
-      </TableRow>
+    <TableContainer>
+      <Table id='rutineTable'>
+        <TableHead>
+          <TableRow>
+            <TableHeadCell>Lunes</TableHeadCell>
+            <TableHeadCell>Martes</TableHeadCell>
+            <TableHeadCell>Miércoles</TableHeadCell>
+            <TableHeadCell>Jueves</TableHeadCell>
+            <TableHeadCell>Viernes</TableHeadCell>
+          </TableRow>
+          <RoutineColumnHead />
+        </TableHead>
 
-      <RoutineColumnHead />
-
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-      <RoutineRow />
-    </Table>
+        <TableBody>
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+          <RoutineRow />
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Exercise from '../entities/Exercise';
-import { TableRow } from '../styled-components/TableRow';
+import { TableRow } from '../styled-components/Table/TableRow';
 import RoutineColumn, { column } from './RoutineColumn';
 
 interface row {

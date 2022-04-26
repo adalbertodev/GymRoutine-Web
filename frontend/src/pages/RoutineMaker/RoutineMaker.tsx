@@ -1,6 +1,7 @@
 import RoutineTable from './components/RoutineTable';
 import { SaveButton } from './styled-components/SaveButton';
 import html2canvas from 'html2canvas';
+import { Button } from '@mui/material';
 
 const RutineMaker = () => {
   const downloadTable = async () => {
@@ -21,7 +22,9 @@ const RutineMaker = () => {
   return (
     <div className='container'>
       <RoutineTable></RoutineTable>
-      <SaveButton onClick={downloadTable}>Guardar</SaveButton>
+      <Button variant='contained' color='success' onClick={downloadTable}>
+        Guardar
+      </Button>
     </div>
   );
 };
