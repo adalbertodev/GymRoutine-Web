@@ -1,52 +1,49 @@
-import React from 'react';
-// import { getExercises } from '../ExerciseAPI';
+import React, { useState } from 'react';
+import Exercise, { ExerciseTable } from '../entities/Exercise';
+import { getExercises } from '../ExerciseAPI';
 import { Table } from '../styled-components/Table/Table';
-import { TableBody } from '../styled-components/Table/TableBody';
 import { TableContainer } from '../styled-components/Table/TableContainer';
-import { TableHead } from '../styled-components/Table/TableHead';
-import { TableHeadCell } from '../styled-components/Table/TableHeadCell';
-import { TableRow } from '../styled-components/Table/TableRow';
-import RoutineColumnHead from './RoutineColumnHead';
-import RoutineRow from './RoutineRow';
+import RoutineBody from './RoutineBody';
+import RoutineHead from './RoutineHead';
 
 const RoutineTable: React.FC = () => {
-  // const exercises = async () => {
-  //   console.log(await getExercises());
-  // };
+  const [options, setOptions] = useState<Exercise[]>([]);
 
-  // exercises();
+  const searchExercises = async () => {
+    console.log(options);
+    if (options.length !== 0) {
+      return;
+    }
 
+    const exercisesTable: ExerciseTable[] = await getExercises();
+    const exercises = exercisesToExercises(exercisesTable);
+    setOptions(exercises);
+  };
+
+  const exercisesToExercises = (
+    exercisesTable: ExerciseTable[]
+  ): Exercise[] => {
+    const exercises: Exercise[] = [];
+
+    exercisesTable.map((exerciseTable) => {
+      const exercise = {
+        id: exerciseTable.id.value,
+        label: exerciseTable.name.value,
+        muscle: exerciseTable.muscle.value,
+        bar: exerciseTable.bar?.value
+      };
+
+      exercises.push(exercise);
+      return exerciseTable;
+    });
+    return exercises;
+  };
+  searchExercises();
   return (
     <TableContainer>
       <Table id='rutineTable'>
-        <TableHead>
-          <TableRow>
-            <TableHeadCell>Lunes</TableHeadCell>
-            <TableHeadCell>Martes</TableHeadCell>
-            <TableHeadCell>Miércoles</TableHeadCell>
-            <TableHeadCell>Jueves</TableHeadCell>
-            <TableHeadCell>Viernes</TableHeadCell>
-          </TableRow>
-          <RoutineColumnHead />
-        </TableHead>
-
-        <TableBody>
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-          <RoutineRow />
-        </TableBody>
+        <RoutineHead />
+        <RoutineBody exercises={options} />
       </Table>
     </TableContainer>
   );
