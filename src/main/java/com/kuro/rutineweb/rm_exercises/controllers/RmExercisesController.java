@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class RmExercisesController {
@@ -17,18 +18,27 @@ public class RmExercisesController {
     private RmExerciseRepository repository;
 
     @GetMapping("/api/rmExercises")
-    public List<RmExercise> findAll() {
+    public List<RmExercisePrimitive> findAll() {
         try {
-            return repository.findAll();
+            return convertToPrimitives(repository.findAll());
         } catch (SQLException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
     @GetMapping("/api/rmExercises/{user_id}&&{exercise_id}")
-    public RmExercise findById(@PathVariable String user_id, @PathVariable String exercise_id) {
+    public RmExercisePrimitive findById(@PathVariable String user_id, @PathVariable String exercise_id) {
         try {
-            return repository.findById(user_id, exercise_id);
+            return convertToPrimitive(repository.findById(user_id, exercise_id));
+        } catch (SQLException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    @GetMapping("/api/rmExercises/{user_id}")
+    public List<RmExercisePrimitive> findById(@PathVariable String user_id) {
+        try {
+            return convertToPrimitives(repository.findByUserId(user_id));
         } catch (SQLException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
@@ -59,5 +69,13 @@ public class RmExercisesController {
         } catch (SQLException e) {
 
         }
+    }
+
+    private List<RmExercisePrimitive> convertToPrimitives(List<RmExercise> rmExercises) {
+        return rmExercises.stream().map(RmExercise::toPrimitives).collect(Collectors.toList());
+    }
+
+    private RmExercisePrimitive convertToPrimitive(RmExercise rmExercise) {
+        return rmExercise.toPrimitives();
     }
 }

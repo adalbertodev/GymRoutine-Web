@@ -8,21 +8,24 @@ import {
   Select,
   SelectChangeEvent
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useFetchUser } from '../hooks/useFetchUser';
 import User from '../entities/User';
 
-const TableSettings: React.FC = () => {
+const TableSettings: React.FC<settingsProps> = ({ activeUserState }) => {
   const url = process.env.REACT_APP_API_URL + 'users';
-  const { users, loading, error } = useFetchUser(url, 'GET');
-  const [activeUser, setActiveUser] = useState<User>();
+  const { users } = useFetchUser(url, 'GET');
+  const [activeUser, setActiveUser] = activeUserState;
 
   const handleChange = (e: SelectChangeEvent) => {
+    if (activeUser?.name === e.target.value) {
+      return;
+    }
     setActiveUser(users.find((user) => user.name === e.target.value));
   };
 
   useEffect(() => {
-    if (!loading && error === null) {
+    if (users.length !== 0) {
       setActiveUser(users[0]);
     }
   }, [users]);
@@ -55,5 +58,12 @@ const TableSettings: React.FC = () => {
     </ConfigBox>
   );
 };
+
+interface settingsProps {
+  activeUserState: [
+    User | undefined,
+    React.Dispatch<React.SetStateAction<User | undefined>>
+  ];
+}
 
 export default TableSettings;

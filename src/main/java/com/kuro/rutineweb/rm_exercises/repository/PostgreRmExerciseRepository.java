@@ -73,6 +73,24 @@ public class PostgreRmExerciseRepository extends PostgreRepository<RmExercise> i
     }
 
     @Override
+    public List<RmExercise> findByUserId(String user_id) throws SQLException {
+        UserId userId = new UserId(user_id);
+        String query = "" +
+                "SELECT " +
+                "R.user_id, U.name as user_name, " +
+                "U.password, R.exercise, " +
+                "E.name as exercise_name, E.muscle, " +
+                "E.bar, R.rm " +
+                "FROM " + tableName() + " as R " +
+                "INNER JOIN users as U " +
+                "on U.id = R.user_id " +
+                "INNER JOIN exercises as E " +
+                "on E.id = R.exercise " +
+                "WHERE U.id = '" + userId.getValue() + "';";
+        return getModelByQuery(query);
+    }
+
+    @Override
     public boolean existsById(String user_id, String exercise_id) throws SQLException {
         try {
             findById(user_id, exercise_id);

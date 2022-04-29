@@ -7,7 +7,8 @@ export const useFetchExercise = (
   method: string,
   content?: object
 ) => {
-  const { data, loading, error } = useFetch(url, method, content);
+  const { state, setUrl } = useFetch(url, method, content);
+  const { data, loading, error } = state;
 
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
@@ -23,7 +24,8 @@ export const useFetchExercise = (
   return {
     exercises,
     loading,
-    error
+    error,
+    setUrl
   };
 };
 

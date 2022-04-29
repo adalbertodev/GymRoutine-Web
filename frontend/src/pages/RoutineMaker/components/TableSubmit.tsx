@@ -6,6 +6,10 @@ import { SubmitBox } from '../styled-components/SubmitBox';
 const TableSubmit: React.FC = () => {
   return (
     <SubmitBox>
+      <SaveButton variant='contained' color='primary'>
+        Calcular
+      </SaveButton>
+
       <SaveButton
         variant='contained'
         color='success'

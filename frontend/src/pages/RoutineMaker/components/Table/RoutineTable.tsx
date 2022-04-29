@@ -6,7 +6,7 @@ import RoutineBody from './RoutineBody';
 import RoutineHead from './RoutineHead';
 
 const RoutineTable: React.FC = () => {
-  let url = process.env.REACT_APP_API_URL + 'exercises';
+  const url = process.env.REACT_APP_API_URL + 'exercises';
   const { exercises } = useFetchExercise(url, 'GET');
 
   return (

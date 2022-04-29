@@ -12,6 +12,8 @@ public interface RmExerciseRepository {
 
     RmExercise findById(String user_id, String exercise_id) throws SQLException;
 
+    List<RmExercise> findByUserId(String user_id) throws SQLException;
+
     boolean existsById(String user_id, String exercise_id) throws SQLException;
 
     List<RmExercise> findAll() throws SQLException;
