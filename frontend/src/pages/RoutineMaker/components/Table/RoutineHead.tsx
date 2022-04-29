@@ -1,8 +1,8 @@
 import React from 'react';
-import { HeadCell } from '../entities/Cell';
-import { HeadRow } from '../entities/Row';
-import { StyledCellGrid } from '../styled-components/Table/StyledCellGrid';
-import { TableHead } from '../styled-components/Table/TableHead';
+import { HeadCell } from '../../entities/Cell';
+import { HeadRow } from '../../entities/Row';
+import { StyledCellGrid } from '../../styled-components/Table/StyledCellGrid';
+import { TableHead } from '../../styled-components/Table/TableHead';
 import RoutineHeadRow from './RoutineHeadRow';
 
 const RoutineHead: React.FC = () => {

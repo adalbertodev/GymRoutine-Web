@@ -8,8 +8,8 @@ export const TableHeadCell = styled.th`
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.5rem;
-  letter-spacing: 0.01071em;
-  padding: 0.5rem;
+  letter-spacing: 0.015em;
+  padding: 0.5rem 0;
   text-align: center;
   vertical-align: inherit;
 

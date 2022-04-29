@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
@@ -17,18 +18,18 @@ public class UserController {
     private UserRepository repository;
 
     @GetMapping("/api/users")
-    public List<User> findAll() {
+    public List<UserPrimitive> findAll() {
         try {
-            return repository.findAll();
+            return convertToPrimitives(repository.findAll());
         } catch (SQLException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
     @GetMapping("/api/users/{id}")
-    public User findById(@PathVariable String id) {
+    public UserPrimitive findById(@PathVariable String id) {
         try {
-            return repository.findById(id);
+            return convertToPrimitive(repository.findById(id));
         } catch (SQLException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
@@ -59,5 +60,13 @@ public class UserController {
         } catch (SQLException e) {
 
         }
+    }
+
+    private List<UserPrimitive> convertToPrimitives(List<User> users) {
+        return users.stream().map(User::toPrimitives).collect(Collectors.toList());
+    }
+
+    private UserPrimitive convertToPrimitive(User user) {
+        return user.toPrimitives();
     }
 }

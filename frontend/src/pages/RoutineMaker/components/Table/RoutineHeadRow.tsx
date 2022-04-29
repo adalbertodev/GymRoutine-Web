@@ -1,7 +1,7 @@
 import React from 'react';
-import { HeadRow } from '../entities/Row';
-import { TableHeadCell } from '../styled-components/Table/TableHeadCell';
-import { TableRow } from '../styled-components/Table/TableRow';
+import { HeadRow } from '../../entities/Row';
+import { TableHeadCell } from '../../styled-components/Table/TableHeadCell';
+import { TableRow } from '../../styled-components/Table/TableRow';
 
 const RoutineHeadRow: React.FC<HeadRow> = ({
   column1,

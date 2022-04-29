@@ -1,7 +1,7 @@
 // import Exercise from './entities/Exercise';
 // import data from './entities/Exercises.json';
 
-import Exercise from './entities/Exercise';
+import Exercise from '../entities/Exercise';
 
 export async function getExercises() {
   let url = process.env.REACT_APP_API_URL + 'exercises';
