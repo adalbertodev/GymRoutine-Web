@@ -3,8 +3,7 @@ import { useFetch } from '../../../hooks/useFetch';
 import User, { UserDB } from '../entities/User';
 
 export const useFetchUser = (url: string, method: string, content?: object) => {
-  const { state, setUrl } = useFetch(url, method, content);
-  const { data, loading, error } = state;
+  const { data, loading, error } = useFetch(url, method, content);
 
   const [users, setUsers] = useState<User[]>([]);
 
@@ -18,8 +17,7 @@ export const useFetchUser = (url: string, method: string, content?: object) => {
   return {
     users,
     loading,
-    error,
-    setUrl
+    error
   };
 };
 

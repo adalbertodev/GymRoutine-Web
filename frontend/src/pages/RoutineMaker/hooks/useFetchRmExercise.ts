@@ -3,12 +3,11 @@ import { useFetch } from '../../../hooks/useFetch';
 import RmExercise, { RmExerciseDB } from '../entities/RmExercise';
 
 export const useFetchRmExercise = (
-  url: string | undefined,
+  url: string,
   method: string,
   content?: object
 ) => {
-  const { state, setUrl } = useFetch(url, method, content);
-  const { data, loading, error } = state;
+  const { data, loading, error } = useFetch(url, method, content);
 
   const [rmExercises, setRmExercises] = useState<RmExercise[]>([]);
 
@@ -24,8 +23,7 @@ export const useFetchRmExercise = (
   return {
     rmExercises,
     loading,
-    error,
-    setUrl
+    error
   };
 };
 

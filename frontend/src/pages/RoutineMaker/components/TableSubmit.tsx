@@ -3,7 +3,9 @@ import { SaveButton } from '../styled-components/SaveButton';
 import { downloadHTML } from '../helpers/downloadHTML';
 import { SubmitBox } from '../styled-components/SubmitBox';
 
-const TableSubmit: React.FC = () => {
+const TableSubmit: React.FC = React.memo(() => {
+  // console.log('TableSubmit');
+
   return (
     <SubmitBox>
       <SaveButton variant='contained' color='primary'>
@@ -19,6 +21,6 @@ const TableSubmit: React.FC = () => {
       </SaveButton>
     </SubmitBox>
   );
-};
+});
 
 export default TableSubmit;
