@@ -1,26 +1,17 @@
 import React from 'react';
-import { Table } from '../../entities/Table';
 import { TableBody } from '../../styled-components/Table/TableBody';
-import RoutineRow from './RoutineRow';
+import RoutineRow, { Row } from './RoutineRow';
 
-const RoutineBody: React.FC<Table> = ({ exercises }) => {
+export interface TBody {
+  rows: Row[];
+}
+
+const RoutineBody: React.FC<TBody> = ({ rows }) => {
   return (
     <TableBody>
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
-      <RoutineRow columnsCount={5} exercises={exercises} />
+      {rows.map((row, i) => (
+        <RoutineRow key={`Row ${i + 1}`} columns={row.columns} />
+      ))}
     </TableBody>
   );
 };

@@ -1,46 +1,64 @@
 import { Autocomplete } from '@mui/material';
-import { Cell } from '../../entities/Cell';
+import { useContext } from 'react';
+import { useForm } from '../../hooks/useForm';
 import { StyledCellGrid } from '../../styled-components/Table/StyledCellGrid';
 import { StyledTextField } from '../../styled-components/Table/StyledTextField';
 import { TableCell } from '../../styled-components/Table/TableCell';
+import { TableContext } from '../TableContext';
 
-const RoutineCell: React.FC<Cell> = ({
-  exercise,
-  series,
-  repetitions,
-  weight,
-  exercises: options
-}) => {
+export interface Cell {
+  exercise: string;
+  series: string;
+  repetitions: string;
+  weight: string;
+}
+
+const RoutineCell: React.FC<Cell> = (props) => {
+  const { formData, handleInputChange } = useForm(props);
+  const { table } = useContext(TableContext);
+  const { exercises } = table;
+
+  const { exercise, series, repetitions, weight } = formData;
+
   return (
     <TableCell>
       <StyledCellGrid>
         <Autocomplete
-          id='disable-close-on-select'
           disableClearable
           freeSolo
           selectOnFocus
-          options={options ? options : []}
-          groupBy={(option) => option.muscle}
-          defaultValue={exercise !== undefined ? exercise : ''}
+          options={exercises ? exercises : []}
+          groupBy={(exercise) => exercise.muscle}
+          value={exercise}
           renderInput={(params) => (
-            <StyledTextField {...params} variant='standard' />
+            <StyledTextField
+              {...params}
+              name='exercise'
+              variant='standard'
+              onChange={handleInputChange}
+            />
           )}
         />
 
         <StyledTextField
-          id='seriesInput'
+          name='series'
           variant='standard'
-          defaultValue={series ? series : ''}
+          value={series}
+          onChange={handleInputChange}
         />
 
         <StyledTextField
+          name='repetitions'
           variant='standard'
-          defaultValue={repetitions ? repetitions : ''}
+          value={repetitions}
+          onChange={handleInputChange}
         />
 
         <StyledTextField
+          name='weight'
           variant='standard'
-          defaultValue={weight ? weight : ''}
+          value={weight}
+          onChange={handleInputChange}
         />
       </StyledCellGrid>
     </TableCell>

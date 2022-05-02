@@ -1,9 +1,9 @@
-import { ExerciseDB } from './Exercise';
-import { UserDB } from './User';
+import Exercise, { ExerciseDB } from './Exercise';
+import User, { UserDB } from './User';
 
 export default interface RmExercise {
-  readonly user: UserDB;
-  readonly exercise: ExerciseDB;
+  readonly user: User;
+  readonly exercise: Exercise;
   readonly rm: number;
 }
 

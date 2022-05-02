@@ -1,7 +1,14 @@
 import React from 'react';
-import { HeadRow } from '../../entities/Row';
 import { TableHeadCell } from '../../styled-components/Table/TableHeadCell';
 import { TableRow } from '../../styled-components/Table/TableRow';
+
+export interface HeadRow {
+  column1: JSX.Element;
+  column2: JSX.Element;
+  column3: JSX.Element;
+  column4: JSX.Element;
+  column5: JSX.Element;
+}
 
 const RoutineHeadRow: React.FC<HeadRow> = ({
   column1,

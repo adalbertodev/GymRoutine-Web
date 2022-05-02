@@ -1,9 +1,19 @@
 import React from 'react';
-import { HeadCell } from '../../entities/Cell';
-import { HeadRow } from '../../entities/Row';
 import { StyledCellGrid } from '../../styled-components/Table/StyledCellGrid';
 import { TableHead } from '../../styled-components/Table/TableHead';
 import RoutineHeadRow from './RoutineHeadRow';
+
+export interface HeadRow {
+  column1: JSX.Element;
+  column2: JSX.Element;
+  column3: JSX.Element;
+  column4: JSX.Element;
+  column5: JSX.Element;
+}
+
+export interface HeadCell {
+  content: JSX.Element;
+}
 
 const RoutineHead: React.FC = () => {
   const semanalDays: HeadRow = {

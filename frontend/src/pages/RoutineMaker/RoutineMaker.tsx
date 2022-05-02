@@ -8,27 +8,32 @@ import User from './entities/User';
 // import { useFetchRmExercise } from './hooks/useFetchRmExercise';
 import { useFetch } from '../../hooks/useFetch';
 import RmExercise from './entities/RmExercise';
+import { useTable } from './hooks/useTable';
+import { TableContext } from './components/TableContext';
 
 const RoutineMaker: React.FC = () => {
   const [activeUser, setActiveUser] = useState<User>();
-  const url =
-    process.env.REACT_APP_API_URL +
-    `rmExercises/${activeUser ? activeUser.id : ''}`;
-  const { data } = useFetch(url, 'GET');
-  const rmExercises = useMemo(() => (data ? data : []), [data]) as RmExercise[];
+
+  const { table, dispatch } = useTable();
+
+  // const url =
+  //   process.env.REACT_APP_API_URL +
+  //   `rmExercises/${activeUser ? activeUser.id : ''}`;
+  // const { data } = useFetch(url, 'GET');
+  // const rmExercises = useMemo(() => (data ? data : []), [data]) as RmExercise[];
 
   // const { rmExercises } = useFetchRmExercise(url, 'GET');
 
-  console.log(rmExercises);
+  // console.log(rmExercises);
 
   return (
-    <RoutineMakerContainer>
-      <TableSettings activeUserState={[activeUser, setActiveUser]} />
-
-      <RoutineTable />
-
-      <TableSubmit />
-    </RoutineMakerContainer>
+    <TableContext.Provider value={{ table, dispatch }}>
+      <RoutineMakerContainer>
+        <TableSettings activeUserState={[activeUser, setActiveUser]} />
+        <RoutineTable rows={table.rows} />
+        <TableSubmit />
+      </RoutineMakerContainer>
+    </TableContext.Provider>
   );
 };
 

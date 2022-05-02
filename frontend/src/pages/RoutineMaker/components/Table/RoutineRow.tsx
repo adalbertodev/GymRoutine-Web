@@ -1,39 +1,25 @@
 import React from 'react';
-import { Row } from '../../entities/Row';
 import { TableRow } from '../../styled-components/Table/TableRow';
-import RoutineCell from './RoutineCell';
+import RoutineCell, { Cell } from './RoutineCell';
 
-const RoutineRow: React.FC<Row> = ({
-  columnsCount,
-  column1,
-  column2,
-  column3,
-  column4,
-  column5,
-  exercises
-}) => {
-  const cells = [];
+export interface Row {
+  columns: Cell[];
+}
 
-  const columns = [column1, column2, column3, column4, column5];
-
-  for (let i = 0; i < columnsCount; i++) {
-    cells[i] = (
-      <RoutineCell
-        key={i}
-        exercise={
-          columns[i]?.exercise !== undefined ? columns[i]?.exercise : ''
-        }
-        series={columns[i]?.series !== undefined ? columns[i]?.series : ''}
-        repetitions={
-          columns[i]?.repetitions !== undefined ? columns[i]?.repetitions : ''
-        }
-        weight={columns[i]?.weight !== undefined ? columns[i]?.weight : ''}
-        exercises={exercises !== undefined ? exercises : []}
-      />
-    );
-  }
-
-  return <TableRow>{cells}</TableRow>;
+const RoutineRow: React.FC<Row> = ({ columns }) => {
+  return (
+    <TableRow>
+      {columns.map((column, i) => (
+        <RoutineCell
+          key={`Column ${i}`}
+          exercise={column.exercise}
+          series={column.series}
+          repetitions={column.repetitions}
+          weight={column.weight}
+        />
+      ))}
+    </TableRow>
+  );
 };
 
 export default RoutineRow;
