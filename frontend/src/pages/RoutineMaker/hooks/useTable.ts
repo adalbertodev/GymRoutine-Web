@@ -1,5 +1,11 @@
+import {
+  AutocompleteChangeDetails,
+  AutocompleteChangeReason
+} from '@mui/material';
+import { defaultMaxListeners } from 'events';
 import { useReducer } from 'react';
 import { RTable } from '../components/Table/RoutineTable';
+import Exercise from '../entities/Exercise';
 import {
   emptyTable,
   tableReducer,
@@ -9,10 +15,36 @@ import {
 export interface tableHook {
   table: RTable;
   dispatch: React.Dispatch<tableReducerAction>;
+  handleChange?: (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => void;
 }
 
 export const useTable = (): tableHook => {
   const [table, dispatch] = useReducer(tableReducer, emptyTable);
 
-  return { table, dispatch };
+  const handleChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    // setFormData({ ...formData, [e.target.name]: e.target.value });
+    dispatch({
+      type: 'changeInput',
+      payload: { name: e.target.name, value: e.target.value }
+    });
+    console.log(table);
+  };
+
+  // const handleAutoComplete = (
+  //   e: React.SyntheticEvent<Element, Event>,
+  //   value: Exercise | string,
+  //   reason: AutocompleteChangeReason,
+  //   details?: AutocompleteChangeDetails<any>
+  // ) => {
+  //   dispatch({
+  //     type: 'changeInput',
+  //     payload: { name: e.currentTarget.name, value: (value as Exercise).label }
+  //   });
+  // };
+
+  return { table, dispatch, handleChange };
 };

@@ -10,7 +10,7 @@ const RoutineBody: React.FC<TBody> = ({ rows }) => {
   return (
     <TableBody>
       {rows.map((row, i) => (
-        <RoutineRow key={`Row ${i + 1}`} columns={row.columns} />
+        <RoutineRow key={`Row ${i + 1}`} columns={row.columns} row={i} />
       ))}
     </TableBody>
   );

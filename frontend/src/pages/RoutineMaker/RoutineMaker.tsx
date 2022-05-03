@@ -14,7 +14,8 @@ import { TableContext } from './components/TableContext';
 const RoutineMaker: React.FC = () => {
   const [activeUser, setActiveUser] = useState<User>();
 
-  const { table, dispatch } = useTable();
+  const methods = useTable();
+  const { table } = methods;
 
   // const url =
   //   process.env.REACT_APP_API_URL +
@@ -27,7 +28,7 @@ const RoutineMaker: React.FC = () => {
   // console.log(rmExercises);
 
   return (
-    <TableContext.Provider value={{ table, dispatch }}>
+    <TableContext.Provider value={{ ...methods }}>
       <RoutineMakerContainer>
         <TableSettings activeUserState={[activeUser, setActiveUser]} />
         <RoutineTable rows={table.rows} />

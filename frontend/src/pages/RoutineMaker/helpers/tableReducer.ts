@@ -3,10 +3,11 @@ import { Row } from '../components/Table/RoutineRow';
 import { RTable } from '../components/Table/RoutineTable';
 import Exercise from '../entities/Exercise';
 import RmExercise from '../entities/RmExercise';
+import { changeInput, introduceRM } from './tableReducerActions';
 
 export interface tableReducerAction {
   type: string;
-  payload: RmExercise[] | Exercise[];
+  payload: RmExercise[] | Exercise[] | { name: string; value: string };
 }
 
 export const tableReducer = (
@@ -26,41 +27,11 @@ export const tableReducer = (
         exercises: action.payload as Exercise[]
       };
 
+    case 'changeInput':
+      return changeInput(table, action);
+
     case 'calculateRm':
-      const rows = table.rows.map((row) => {
-        const newColumn = row.columns.map((column) => {
-          const exercise = table.exercises?.find((exercise) => {
-            return exercise.label === column.exercise;
-          });
-
-          if (exercise === undefined) {
-            return column;
-          }
-
-          const rmExercise = (action.payload as RmExercise[]).find(
-            (rmExercise: RmExercise) => {
-              return rmExercise.exercise.id === exercise.id;
-            }
-          );
-
-          if (rmExercise === undefined) {
-            return column;
-          }
-
-          return {
-            ...column,
-            weight: `${rmExercise.rm}`
-          };
-        });
-        return {
-          ...row,
-          columns: newColumn
-        };
-      });
-      return {
-        ...table,
-        rows: rows
-      };
+      return introduceRM(table, action);
 
     default:
       return table;
@@ -68,7 +39,7 @@ export const tableReducer = (
 };
 
 const emptyCell: Cell = {
-  exercise: 'Press Banca',
+  exercise: '',
   series: '',
   repetitions: '',
   weight: ''

@@ -1,6 +1,6 @@
 import { Autocomplete } from '@mui/material';
-import { useContext } from 'react';
-import { useForm } from '../../hooks/useForm';
+import { useContext, useRef } from 'react';
+import Exercise from '../../entities/Exercise';
 import { StyledCellGrid } from '../../styled-components/Table/StyledCellGrid';
 import { StyledTextField } from '../../styled-components/Table/StyledTextField';
 import { TableCell } from '../../styled-components/Table/TableCell';
@@ -11,14 +11,25 @@ export interface Cell {
   series: string;
   repetitions: string;
   weight: string;
+  cell?: {
+    row: number;
+    column: number;
+  };
 }
 
-const RoutineCell: React.FC<Cell> = (props) => {
-  const { formData, handleInputChange } = useForm(props);
-  const { table } = useContext(TableContext);
+const RoutineCell: React.FC<Cell> = ({
+  exercise,
+  series,
+  repetitions,
+  weight,
+  cell
+}) => {
+  const { table, handleChange } = useContext(TableContext);
   const { exercises } = table;
+  const row = cell?.row || 0;
+  const column = cell?.column || 0;
 
-  const { exercise, series, repetitions, weight } = formData;
+  const exerciseInput = useRef<HTMLInputElement>(null);
 
   return (
     <TableCell>
@@ -29,36 +40,49 @@ const RoutineCell: React.FC<Cell> = (props) => {
           selectOnFocus
           options={exercises ? exercises : []}
           groupBy={(exercise) => exercise.muscle}
-          value={exercise}
+          inputValue={exercise}
+          onChange={(e, value) => {
+            if (exerciseInput.current) {
+              exerciseInput.current.setAttribute(
+                'value',
+                (value as Exercise).label
+              );
+              let evt = new Event('input', { bubbles: true });
+              exerciseInput.current.dispatchEvent(evt);
+            }
+
+            // console.log(exerciseInput.current.dispatchEvent(evt));
+          }}
           renderInput={(params) => (
             <StyledTextField
               {...params}
-              name='exercise'
+              name={`rows.${row}.columns.${column}.exercise`}
+              inputRef={exerciseInput}
               variant='standard'
-              onChange={handleInputChange}
+              onChange={handleChange}
             />
           )}
         />
 
         <StyledTextField
-          name='series'
+          name={`rows.${row}.columns.${column}.series`}
           variant='standard'
           value={series}
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
 
         <StyledTextField
-          name='repetitions'
+          name={`rows.${row}.columns.${column}.repetitions`}
           variant='standard'
           value={repetitions}
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
 
         <StyledTextField
-          name='weight'
+          name={`rows.${row}.columns.${column}.weight`}
           variant='standard'
           value={weight}
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
       </StyledCellGrid>
     </TableCell>

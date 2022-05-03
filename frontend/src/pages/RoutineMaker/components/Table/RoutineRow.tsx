@@ -4,9 +4,12 @@ import RoutineCell, { Cell } from './RoutineCell';
 
 export interface Row {
   columns: Cell[];
+  row?: number;
 }
 
-const RoutineRow: React.FC<Row> = ({ columns }) => {
+const RoutineRow: React.FC<Row> = ({ columns, row }) => {
+  const currentRow = row || 0;
+
   return (
     <TableRow>
       {columns.map((column, i) => (
@@ -16,6 +19,7 @@ const RoutineRow: React.FC<Row> = ({ columns }) => {
           series={column.series}
           repetitions={column.repetitions}
           weight={column.weight}
+          cell={{ row: currentRow, column: i }}
         />
       ))}
     </TableRow>
