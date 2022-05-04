@@ -1,4 +1,5 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
+import { getExercises } from '../../../services/ExerciseAPI';
 import {
   emptyTable,
   tableReducer,
@@ -9,36 +10,19 @@ import { RTable } from '../models/RTable';
 export interface tableHook {
   table: RTable;
   dispatch: React.Dispatch<tableReducerAction>;
-  handleChange?: (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => void;
 }
 
 export const useTable = (): tableHook => {
   const [table, dispatch] = useReducer(tableReducer, emptyTable);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    // setFormData({ ...formData, [e.target.name]: e.target.value });
-    dispatch({
-      type: 'changeInput',
-      payload: { name: e.target.name, value: e.target.value }
+  useEffect(() => {
+    getExercises().then((exercises) => {
+      dispatch({
+        type: 'addExercises',
+        payload: exercises
+      });
     });
-    console.log(table);
-  };
+  }, []);
 
-  // const handleAutoComplete = (
-  //   e: React.SyntheticEvent<Element, Event>,
-  //   value: Exercise | string,
-  //   reason: AutocompleteChangeReason,
-  //   details?: AutocompleteChangeDetails<any>
-  // ) => {
-  //   dispatch({
-  //     type: 'changeInput',
-  //     payload: { name: e.currentTarget.name, value: (value as Exercise).label }
-  //   });
-  // };
-
-  return { table, dispatch, handleChange };
+  return { table, dispatch };
 };

@@ -1,21 +1,18 @@
 import axios from 'axios';
 
 export const get = async <T>(route: string): Promise<T[]> => {
-  const url = `${process.env.REACT_APP_API_URL}${route}`;
   try {
-    const { data } = await axios.get<T[]>(url, {
-      headers: {
-        Accept: 'application/json'
-      }
+    const { data } = await axios.request<T[]>({
+      baseURL: process.env.REACT_APP_API_URL,
+      url: route,
+      method: 'GET',
+      responseType: 'json',
+      validateStatus: () => true
     });
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('Error: ', error.message);
-      throw new Error(error.message);
-    }
-    console.log('Unexpected error: ', error);
-    throw new Error('An unexpexted error occurred');
+    console.log();
+    throw new Error(caughtError(error));
   }
 };
 
@@ -30,12 +27,7 @@ export const getById = async <T>(route: string, id: string): Promise<T> => {
     });
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('Error: ', error.message);
-      throw new Error(error.message);
-    }
-    console.log('Unexpected error: ', error);
-    throw new Error('An unexpexted error occurred');
+    throw new Error(caughtError(error));
   }
 };
 
@@ -52,12 +44,7 @@ export const post = async <T>(route: string, body: T): Promise<number> => {
     });
     return status;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('Error: ', error.message);
-      throw new Error(error.message);
-    }
-    console.log('Unexpected error: ', error);
-    throw new Error('An unexpexted error occurred');
+    throw new Error(caughtError(error));
   }
 };
 
@@ -75,12 +62,7 @@ export const deleteById = async <T>(
     });
     return status;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('Error: ', error.message);
-      throw new Error(error.message);
-    }
-    console.log('Unexpected error: ', error);
-    throw new Error('An unexpexted error occurred');
+    throw new Error(caughtError(error));
   }
 };
 
@@ -99,11 +81,13 @@ export const deleteByObject = async <T>(
     });
     return status;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('Error: ', error.message);
-      throw new Error(error.message);
-    }
-    console.log('Unexpected error: ', error);
-    throw new Error('An unexpexted error occurred');
+    throw new Error(caughtError(error));
   }
+};
+
+const caughtError = (error: Error | unknown) => {
+  if (axios.isAxiosError(error)) {
+    return error.message;
+  }
+  return 'An unexpexted error occurred';
 };
