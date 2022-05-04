@@ -1,9 +1,11 @@
 import { Autocomplete } from '@mui/material';
 import { useContext, useRef } from 'react';
 import Exercise from '../../../../models/Exercise';
-import { StyledCellGrid } from '../../styled-components/Table/StyledCellGrid';
-import { StyledTextField } from '../../styled-components/Table/StyledTextField';
-import { TableCell } from '../../styled-components/Table/TableCell';
+import {
+  StyledCellGrid,
+  TableCell,
+  StyledTextField
+} from '../../styled-components/Table';
 import { TableContext } from '../../contexts/TableContext';
 import { Cell } from '../../models/Cell';
 

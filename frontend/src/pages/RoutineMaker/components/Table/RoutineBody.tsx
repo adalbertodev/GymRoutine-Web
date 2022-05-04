@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableBody } from '../../styled-components/Table/TableBody';
+import { TableBody } from '../../styled-components/Table';
 import RoutineRow from './RoutineRow';
 import { Body } from '../../models/Body';
 

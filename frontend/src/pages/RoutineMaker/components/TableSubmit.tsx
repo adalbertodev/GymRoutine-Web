@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { SaveButton } from '../styled-components/SaveButton';
+import { SaveButton, SubmitBox } from '../styled-components/TableSubmit';
 import { downloadHTML } from '../helpers/downloadHTML';
-import { SubmitBox } from '../styled-components/SubmitBox';
 import { TableContext } from '../contexts/TableContext';
 import RmExercise from '../../../models/RmExercise';
 

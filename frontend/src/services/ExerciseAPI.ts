@@ -1,75 +1,32 @@
 import Exercise from '../models/Exercise';
-import axios from 'axios';
+import EndpointExercise from '../models/EndpointExercise';
+import { deleteById, deleteByObject, get, getById, post } from './RoutineAPI';
+import {
+  addaptedToEndpointExercise,
+  createAddaptedExercise,
+  createAddaptedExercises
+} from '../adapters/exerciseAdapter';
 
-export const getExercises = async () => {
-  const url = process.env.REACT_APP_API_URL + 'exercises';
-  try {
-    const { data } = await axios.get<Exercise[]>(url, {
-      headers: {
-        Accept: 'application/json'
-      }
-    });
-    return data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('Error: ', error.message);
-      throw new Error(error.message);
-    }
-    console.log('Unexpected error: ', error);
-    throw new Error('An unexpexted error occurred');
-  }
-
-  // let response = await fetch(url, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   }
-  // });
-  // return await response.json();
+export const getExercises = async (): Promise<Exercise[]> => {
+  const exercises = await get<EndpointExercise>('exercises');
+  return createAddaptedExercises(exercises);
 };
 
-export async function getExerciseById(id: string) {
-  let url = process.env.REACT_APP_API_URL + 'exercises/' + id;
-  let response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  return await response.json();
-}
+export const getExerciseById = async (id: string): Promise<Exercise> => {
+  const exercise = await getById<EndpointExercise>('exercises', id);
+  return createAddaptedExercise(exercise);
+};
 
-export async function postExercise(exercise: Exercise) {
-  let url = process.env.REACT_APP_API_URL + 'exercises';
-  let response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(exercise)
-  });
-  return await response.json();
-}
+export const postExercise = async (exercise: Exercise): Promise<number> => {
+  const unAddaptedExercise = addaptedToEndpointExercise(exercise);
+  return post<EndpointExercise>('exercises', unAddaptedExercise);
+};
 
-export async function deleteExerciseById(id: string) {
-  let url = process.env.REACT_APP_API_URL + 'exercises/' + id;
-  let response = await fetch(url, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  return await response.json();
-}
+export const deleteExerciseById = async (id: string): Promise<number> => {
+  return deleteById<EndpointExercise>('exercises', id);
+};
 
-export async function deleteExercise(exercise: Exercise) {
-  let url = process.env.REACT_APP_API_URL + 'exercises';
-  let response = await fetch(url, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(exercise)
-  });
-  return await response.json();
-}
+export const deleteExercise = async (exercise: Exercise): Promise<number> => {
+  const unAddaptedExercise = addaptedToEndpointExercise(exercise);
+  return deleteByObject<EndpointExercise>('exercises', unAddaptedExercise);
+};

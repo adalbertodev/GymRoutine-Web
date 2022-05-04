@@ -1,6 +1,5 @@
 import React from 'react';
-import { TableHeadCell } from '../../styled-components/Table/TableHeadCell';
-import { TableRow } from '../../styled-components/Table/TableRow';
+import { TableHeadCell, TableRow } from '../../styled-components/Table';
 
 export interface HeadRow {
   column1: JSX.Element;

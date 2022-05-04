@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row } from '../../models/Row';
-import { TableRow } from '../../styled-components/Table/TableRow';
+import { TableRow } from '../../styled-components/Table';
 import RoutineCell from './RoutineCell';
 
 const RoutineRow: React.FC<Row> = ({ columns, row }) => {

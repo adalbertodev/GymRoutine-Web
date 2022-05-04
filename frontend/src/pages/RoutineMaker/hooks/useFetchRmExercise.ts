@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFetch } from '../../../hooks/useFetch';
-import { EndpointRmExercise } from '../../../models/EndpointRmExercise';
+import EndpointRmExercise from '../../../models/EndpointRmExercise';
 import RmExercise from '../../../models/RmExercise';
 
 export const useFetchRmExercise = (

@@ -1,5 +1,5 @@
 import RoutineTable from './components/Table/RoutineTable';
-import { RoutineMakerContainer } from './styled-components/RoutineMakerContainer';
+import { RoutineMakerContainer } from './styled-components/RoutineMaker';
 import TableSettings from './components/TableSettings';
 import TableSubmit from './components/TableSubmit';
 import { useMemo, useState } from 'react';

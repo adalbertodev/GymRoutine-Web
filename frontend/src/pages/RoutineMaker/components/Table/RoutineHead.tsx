@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyledCellGrid } from '../../styled-components/Table/StyledCellGrid';
-import { TableHead } from '../../styled-components/Table/TableHead';
+import { TableHead, StyledCellGrid } from '../../styled-components/Table';
 import RoutineHeadRow from './RoutineHeadRow';
 
 export interface HeadRow {
