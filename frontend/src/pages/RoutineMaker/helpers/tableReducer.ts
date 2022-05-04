@@ -1,8 +1,8 @@
-import { Cell } from '../components/Table/RoutineCell';
-import { Row } from '../components/Table/RoutineRow';
-import { RTable } from '../components/Table/RoutineTable';
-import Exercise from '../entities/Exercise';
-import RmExercise from '../entities/RmExercise';
+import { Cell } from '../models/Cell';
+import { Row } from '../models/Row';
+import { RTable } from '../models/RTable';
+import Exercise from '../../../models/Exercise';
+import RmExercise from '../../../models/RmExercise';
 import { changeInput, introduceRM } from './tableReducerActions';
 
 export interface tableReducerAction {

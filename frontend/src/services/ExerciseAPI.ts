@@ -1,18 +1,32 @@
-// import Exercise from './entities/Exercise';
-// import data from './entities/Exercises.json';
+import Exercise from '../models/Exercise';
+import axios from 'axios';
 
-import Exercise from '../entities/Exercise';
-
-export async function getExercises() {
-  let url = process.env.REACT_APP_API_URL + 'exercises';
-  let response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
+export const getExercises = async () => {
+  const url = process.env.REACT_APP_API_URL + 'exercises';
+  try {
+    const { data } = await axios.get<Exercise[]>(url, {
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log('Error: ', error.message);
+      throw new Error(error.message);
     }
-  });
-  return await response.json();
-}
+    console.log('Unexpected error: ', error);
+    throw new Error('An unexpexted error occurred');
+  }
+
+  // let response = await fetch(url, {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   }
+  // });
+  // return await response.json();
+};
 
 export async function getExerciseById(id: string) {
   let url = process.env.REACT_APP_API_URL + 'exercises/' + id;

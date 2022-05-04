@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { useEffect } from 'react';
 // import { useFetchUser } from '../hooks/useFetchUser';
-import User from '../entities/User';
+import User from '../../../models/User';
 import { useFetch } from '../../../hooks/useFetch';
 
 const TableSettings: React.FC<settingsProps> = React.memo(

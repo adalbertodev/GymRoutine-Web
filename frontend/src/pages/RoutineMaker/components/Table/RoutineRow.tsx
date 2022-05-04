@@ -1,11 +1,7 @@
 import React from 'react';
+import { Row } from '../../models/Row';
 import { TableRow } from '../../styled-components/Table/TableRow';
-import RoutineCell, { Cell } from './RoutineCell';
-
-export interface Row {
-  columns: Cell[];
-  row?: number;
-}
+import RoutineCell from './RoutineCell';
 
 const RoutineRow: React.FC<Row> = ({ columns, row }) => {
   const currentRow = row || 0;

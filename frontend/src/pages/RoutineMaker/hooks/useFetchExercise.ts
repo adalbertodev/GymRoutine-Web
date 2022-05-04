@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFetch } from '../../../hooks/useFetch';
-import Exercise, { ExerciseDB } from '../entities/Exercise';
+import EndpointExercise from '../../../models/EndpointExercise';
+import Exercise from '../../../models/Exercise';
 
 export const useFetchExercise = (
   url: string,
@@ -14,7 +15,7 @@ export const useFetchExercise = (
   useEffect(() => {
     if (error === null) {
       const exercisesConverted = exercisesDBToExercises(
-        data as ExerciseDB[] | null
+        data as EndpointExercise[] | null
       );
       setExercises(exercisesConverted);
     }
@@ -28,7 +29,7 @@ export const useFetchExercise = (
 };
 
 const exercisesDBToExercises = (
-  exercisesDB: ExerciseDB[] | null
+  exercisesDB: EndpointExercise[] | null
 ): Exercise[] => {
   if (exercisesDB === null) {
     return [];

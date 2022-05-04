@@ -1,7 +1,8 @@
 // import { useFetch } from '../../../hooks/useFetch';
 // import Exercise from '../entities/Exercise';
 
-import RmExercise, { RmExerciseDB } from '../entities/RmExercise';
+import { EndpointRmExercise } from '../../../models/EndpointRmExercise';
+import RmExercise from '../../../models/RmExercise';
 
 // export async function fetchToAPI_RmExercise(
 // ) {
@@ -16,8 +17,8 @@ import RmExercise, { RmExerciseDB } from '../entities/RmExercise';
 //   return await response.json();
 // }
 
-const rmExercisesDBToRmExercises = (
-  rmExercisesDB: RmExerciseDB[] | null
+export const rmExercisesDBToRmExercises = (
+  rmExercisesDB: EndpointRmExercise[] | null
 ): RmExercise[] => {
   if (rmExercisesDB === null) {
     return [];

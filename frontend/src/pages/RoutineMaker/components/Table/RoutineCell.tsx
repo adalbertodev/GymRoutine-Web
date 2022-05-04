@@ -1,21 +1,11 @@
 import { Autocomplete } from '@mui/material';
 import { useContext, useRef } from 'react';
-import Exercise from '../../entities/Exercise';
+import Exercise from '../../../../models/Exercise';
 import { StyledCellGrid } from '../../styled-components/Table/StyledCellGrid';
 import { StyledTextField } from '../../styled-components/Table/StyledTextField';
 import { TableCell } from '../../styled-components/Table/TableCell';
-import { TableContext } from '../TableContext';
-
-export interface Cell {
-  exercise: string;
-  series: string;
-  repetitions: string;
-  weight: string;
-  cell?: {
-    row: number;
-    column: number;
-  };
-}
+import { TableContext } from '../../contexts/TableContext';
+import { Cell } from '../../models/Cell';
 
 const RoutineCell: React.FC<Cell> = ({
   exercise,

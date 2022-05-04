@@ -3,13 +3,13 @@ import { RoutineMakerContainer } from './styled-components/RoutineMakerContainer
 import TableSettings from './components/TableSettings';
 import TableSubmit from './components/TableSubmit';
 import { useMemo, useState } from 'react';
-import User from './entities/User';
+import User from '../../models/User';
 // import RmExercise from './entities/RmExercise';
 // import { useFetchRmExercise } from './hooks/useFetchRmExercise';
 import { useFetch } from '../../hooks/useFetch';
-import RmExercise from './entities/RmExercise';
+import RmExercise from '../../models/RmExercise';
 import { useTable } from './hooks/useTable';
-import { TableContext } from './components/TableContext';
+import { TableContext } from './contexts/TableContext';
 
 const RoutineMaker: React.FC = () => {
   const [activeUser, setActiveUser] = useState<User>();

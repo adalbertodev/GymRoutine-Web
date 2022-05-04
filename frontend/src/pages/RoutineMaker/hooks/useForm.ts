@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Cell } from '../components/Table/RoutineCell';
+import { Cell } from '../models/Cell';
 
 export const useForm = (initialState = emptyCell) => {
   const [formData, setFormData] = useState<Cell>(initialState);

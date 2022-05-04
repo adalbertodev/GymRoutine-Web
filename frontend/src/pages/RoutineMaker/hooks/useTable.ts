@@ -1,16 +1,10 @@
-import {
-  AutocompleteChangeDetails,
-  AutocompleteChangeReason
-} from '@mui/material';
-import { defaultMaxListeners } from 'events';
 import { useReducer } from 'react';
-import { RTable } from '../components/Table/RoutineTable';
-import Exercise from '../entities/Exercise';
 import {
   emptyTable,
   tableReducer,
   tableReducerAction
 } from '../helpers/tableReducer';
+import { RTable } from '../models/RTable';
 
 export interface tableHook {
   table: RTable;

@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { SaveButton } from '../styled-components/SaveButton';
 import { downloadHTML } from '../helpers/downloadHTML';
 import { SubmitBox } from '../styled-components/SubmitBox';
-import { TableContext } from './TableContext';
-import RmExercise from '../entities/RmExercise';
+import { TableContext } from '../contexts/TableContext';
+import RmExercise from '../../../models/RmExercise';
 
 interface RmExercises {
   rmExercises?: RmExercise[];

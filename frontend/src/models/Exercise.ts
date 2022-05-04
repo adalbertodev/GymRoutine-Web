@@ -4,10 +4,3 @@ export default interface Exercise {
   readonly muscle: string;
   readonly bar?: number;
 }
-
-export interface ExerciseDB {
-  readonly id: string;
-  readonly name: string;
-  readonly muscle: string;
-  readonly bar?: number;
-}

@@ -1,7 +1,8 @@
-import Exercise, { ExerciseDB } from '../entities/Exercise';
+import EndpointExercise from '../../../models/EndpointExercise';
+import Exercise from '../../../models/Exercise';
 
 export const exercisesDBToExercises = (
-  exercisesDB: ExerciseDB[] | null
+  exercisesDB: EndpointExercise[] | null
 ): Exercise[] => {
   if (exercisesDB === null) {
     return [];

@@ -1,5 +1,5 @@
-import { RTable } from '../components/Table/RoutineTable';
-import RmExercise from '../entities/RmExercise';
+import { RTable } from '../models/RTable';
+import RmExercise from '../../../models/RmExercise';
 import { tableReducerAction } from './tableReducer';
 
 export const changeInput = (table: RTable, action: tableReducerAction) => {

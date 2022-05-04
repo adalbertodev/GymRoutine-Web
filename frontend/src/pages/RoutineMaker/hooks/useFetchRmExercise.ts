@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFetch } from '../../../hooks/useFetch';
-import RmExercise, { RmExerciseDB } from '../entities/RmExercise';
+import { EndpointRmExercise } from '../../../models/EndpointRmExercise';
+import RmExercise from '../../../models/RmExercise';
 
 export const useFetchRmExercise = (
   url: string,
@@ -14,7 +15,7 @@ export const useFetchRmExercise = (
   useEffect(() => {
     if (error === null) {
       const rmExercisesConverted = rmExercisesDBToRmExercises(
-        data as RmExerciseDB[] | null
+        data as EndpointRmExercise[] | null
       );
       setRmExercises(rmExercisesConverted);
     }
@@ -28,7 +29,7 @@ export const useFetchRmExercise = (
 };
 
 const rmExercisesDBToRmExercises = (
-  rmExercisesDB: RmExerciseDB[] | null
+  rmExercisesDB: EndpointRmExercise[] | null
 ): RmExercise[] => {
   if (rmExercisesDB === null) {
     return [];

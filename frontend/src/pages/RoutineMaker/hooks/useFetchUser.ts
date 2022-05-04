@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFetch } from '../../../hooks/useFetch';
-import User, { UserDB } from '../entities/User';
+import User, { UserDB } from '../../../models/User';
 
 export const useFetchUser = (url: string, method: string, content?: object) => {
   const { data, loading, error } = useFetch(url, method, content);

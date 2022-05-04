@@ -1,7 +1,7 @@
 // import User from './entities/User';
 // import data from './entities/Users.json';
 
-import User from '../entities/User';
+import User from '../../../models/User';
 
 export async function getUsers() {
   let url = process.env.REACT_APP_API_URL + 'users';
