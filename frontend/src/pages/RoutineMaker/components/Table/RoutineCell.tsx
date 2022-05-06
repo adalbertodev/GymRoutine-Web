@@ -41,7 +41,6 @@ const RoutineCell: React.FC<Cell> = ({
       type: 'changeInput',
       payload: { name: e.target.name, value: e.target.value }
     });
-    console.log(table);
   };
 
   return (

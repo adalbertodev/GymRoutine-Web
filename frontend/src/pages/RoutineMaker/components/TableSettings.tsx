@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { ConfigBox } from '../styled-components/ConfigBox';
 import {
   FormControl,
@@ -9,12 +8,15 @@ import {
   SelectChangeEvent
 } from '@mui/material';
 import { useEffect } from 'react';
-// import { useFetchUser } from '../hooks/useFetchUser';
 import User from '../../../models/User';
 import { useFetch } from '../../../hooks/useFetch';
+import RoutineTemplates from '../data/RoutineTemplates.json';
+import { TableContext } from '../contexts/TableContext';
+import { RTable } from '../models/RTable';
 
 const TableSettings: React.FC<settingsProps> = React.memo(
   ({ activeUserState }) => {
+    const { dispatch } = useContext(TableContext);
     const [activeUser, setActiveUser] = activeUserState;
     const url = process.env.REACT_APP_API_URL + 'users';
     const { data } = useFetch(url, 'GET');
@@ -27,13 +29,31 @@ const TableSettings: React.FC<settingsProps> = React.memo(
       setActiveUser(users.find((user) => user.name === e.target.value));
     };
 
+    interface Template {
+      table: RTable;
+      name: string;
+    }
+
+    const templates = RoutineTemplates as Template[];
+
+    const handleTemplateChange = (e: SelectChangeEvent<string>) => {
+      const template = templates.find(
+        (template) => template.name === e.target.value
+      ) as Template;
+
+      dispatch({
+        type: 'setTable',
+        payload: template.table
+      });
+    };
+
     // console.log('TableSettings');
 
     useEffect(() => {
       if (users.length !== 0) {
         setActiveUser(users[0]);
       }
-    }, [users]);
+    }, [setActiveUser, users]);
 
     return (
       <ConfigBox>
@@ -51,6 +71,37 @@ const TableSettings: React.FC<settingsProps> = React.memo(
               users.map((user) => (
                 <MenuItem key={user.id} value={user.name}>
                   {user.name}
+                </MenuItem>
+              ))
+            ) : (
+              <MenuItem value=''>
+                <em>None</em>
+              </MenuItem>
+            )}
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+          <InputLabel id='demo-simple-select-autowidth-label'>
+            Template
+          </InputLabel>
+          <Select
+            labelId='demo-simple-select-autowidth-label'
+            id='demo-simple-select-autowidth'
+            value={''}
+            onChange={(e) => handleTemplateChange(e)}
+            // onClick={handleTemplateClick}
+            autoWidth
+            label='Template'
+          >
+            {templates.length !== 0 ? (
+              templates.map((template, i) => (
+                <MenuItem
+                  key={'template' + i}
+                  value={template.name}
+                  onChange={(e) => console.log(e)}
+                >
+                  {template.name}
                 </MenuItem>
               ))
             ) : (

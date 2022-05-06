@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### SQL ###
+rutine_db_create.sql

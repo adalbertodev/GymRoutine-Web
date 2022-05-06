@@ -1,0 +1,560 @@
+[
+  {
+    "name": "Básica Torso-Piernas",
+    "table": {
+      "rows": [
+        {
+          "columns": [
+            {
+              "exercise": "Press Banca",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Peso Muerto",
+              "series": "3",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Remo con Barra",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "Sentadillas",
+              "series": "3",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Press Banca Inclinado",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "Hip Throust",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Remo con Barra Supina",
+              "series": "1",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "Hip Throust",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Press Banca Declinado",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "Sentadilla Hacka",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Dominadas",
+              "series": "2",
+              "repetitions": "5",
+              "weight": ""
+            },
+            {
+              "exercise": "Press Pierna",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Remo con Barra",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Zancadas",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Encogimiento de Hombros",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Press Pierna Arriba",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Dominadas Supinas",
+              "series": "2",
+              "repetitions": "4",
+              "weight": ""
+            },
+            {
+              "exercise": "Apertura de Piernas",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Rear Delt",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Máquina de Aductor",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Jalón al Pecho Abierto",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Máquina de Aductor",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Press Banca",
+              "series": "3",
+              "repetitions": "8",
+              "weight": ""
+            },
+            {
+              "exercise": "Aperturas de Piernas",
+              "series": "1",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Remo Sentado",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Curl Femoral",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Hex Press",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Elevación de Talones",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Remo con Macuernas",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Elevación de Talones Sentado",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Pull Over",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Press Palof con Rotación",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Remo al Cuello",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Press Palof con Rotación",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Press Militar con Mancuernas",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Plancha",
+              "series": "2",
+              "repetitions": "30s",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Press Militar",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Crunch",
+              "series": "2",
+              "repetitions": "15",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Elevación Lateral",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Crunch",
+              "series": "1",
+              "repetitions": "15",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Elevación Frontal",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Elevación de Piernas",
+              "series": "1",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Extensión de Triceps con Cuerda",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Elevación de Piernas",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Fondos",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Russian Twist",
+              "series": "1",
+              "repetitions": "15",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Extención de Triceps de Espaldas con Polea",
+              "series": "1",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "Half Wipers",
+              "series": "1",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Press Francés",
+              "series": "1",
+              "repetitions": "8",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Curl Bíceps Inclinado",
+              "series": "2",
+              "repetitions": "8",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Curl Bíceps",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Curl Bíceps con Barra Abierto",
+              "series": "1",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "exercise": "Curl Scott",
+              "series": "1",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Prueba",
+    "table": {
+      "rows": [
+        {
+          "columns": [
+            {
+              "exercise": "Press Banca",
+              "series": "2",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "Peso Muerto",
+              "series": "3",
+              "repetitions": "10",
+              "weight": ""
+            },
+            {
+              "exercise": "",
+              "series": "",
+              "repetitions": "",
+              "weight": ""
+            },
+            {
+              "exercise": "Remo con Barra",
+              "series": "2",
+              "repetitions": "12",
+              "weight": ""
+            },
+            {
+              "exercise": "Sentadillas",
+              "series": "3",
+              "repetitions": "12",
+              "weight": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

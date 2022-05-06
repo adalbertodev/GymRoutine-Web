@@ -62,3 +62,8 @@ export const introduceRM = (table: RTable, action: tableReducerAction) => {
     rows: rows
   };
 };
+
+export const SetTemplate = (table: RTable, newTable: RTable) => {
+  console.log({ ...newTable });
+  return { ...table, ...newTable };
+};

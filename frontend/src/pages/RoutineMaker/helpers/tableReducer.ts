@@ -3,11 +3,11 @@ import { Row } from '../models/Row';
 import { RTable } from '../models/RTable';
 import Exercise from '../../../models/Exercise';
 import RmExercise from '../../../models/RmExercise';
-import { changeInput, introduceRM } from './tableReducerActions';
+import { changeInput, introduceRM, SetTemplate } from './tableReducerActions';
 
 export interface tableReducerAction {
   type: string;
-  payload: RmExercise[] | Exercise[] | { name: string; value: string };
+  payload: RmExercise[] | Exercise[] | { name: string; value: string } | RTable;
 }
 
 export const tableReducer = (
@@ -29,6 +29,9 @@ export const tableReducer = (
 
     case 'changeInput':
       return changeInput(table, action);
+
+    case 'setTable':
+      return SetTemplate(table, action.payload as RTable);
 
     case 'calculateRm':
       return introduceRM(table, action);
