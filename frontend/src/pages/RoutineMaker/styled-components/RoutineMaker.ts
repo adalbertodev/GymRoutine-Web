@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 export const RoutineMakerContainer = styled.div`
-  width: 90%;
+  width: 80%;
   margin: auto;
 `;

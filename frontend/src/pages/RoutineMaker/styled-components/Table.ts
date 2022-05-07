@@ -14,10 +14,10 @@ export const TableContainer = styled.div`
 
 export const Table = styled.table`
   display: table;
-  width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   min-width: 700px;
+  table-layout: fixed;
 
   /* width: 80%;
   text-align: center;
@@ -40,7 +40,7 @@ export const TableHeadCell = styled.th`
   color: #fff;
   display: table-cell;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
   letter-spacing: 0.015em;
@@ -49,11 +49,12 @@ export const TableHeadCell = styled.th`
   vertical-align: inherit;
 
   tr:first-child & {
+    font-weight: bold;
     padding: 1rem;
   }
 
   tr:last-child & {
-    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -72,7 +73,7 @@ export const TableRow = styled.tr`
   }
 
   &:last-child td {
-    border: 0;
+    border-bottom: 0;
   }
 
   /* display: grid;
@@ -81,24 +82,31 @@ export const TableRow = styled.tr`
 
 export const StyledCellGrid = styled.div`
   display: grid;
-  grid-template-columns: 60% 10% 10% 20%;
+  grid-template-columns: 57.5% 10% 12.5% 20%;
 `;
 
 export const TableCell = styled.td`
-  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  /* border-bottom: 1px solid rgba(224, 224, 224, 1); */
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(0, 0, 0, 0.5);
   color: rgba(0, 0, 0, 0.87);
+  height: 100%;
   display: table-cell;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
-  line-height: 1.43;
+  line-height: 1.43px;
   letter-spacing: 0.01071em;
-  padding: 16px;
   text-align: center;
   vertical-align: inherit;
 
-  max-width: 20%;
-  padding: 0;
+  &:first-of-type {
+    border-left: 2px solid rgba(0, 0, 0, 0.5);
+  }
+
+  &:last-of-type {
+    border-right: 2px solid rgba(0, 0, 0, 0.5);
+  }
 
   & input {
     text-align: center;
@@ -106,17 +114,25 @@ export const TableCell = styled.td`
 `;
 
 export const StyledTextField = styled(TextField)`
+  & > div {
+    font-size: 0.94rem;
+  }
+
   & > div:before {
     border-right: 1px solid rgba(0, 0, 0, 0.05);
     border-left: 1px solid rgba(0, 0, 0, 0.05);
     height: 100%;
   }
 
+  & input {
+    padding: 4px 4px 5px 4px;
+  }
+
   &:first-of-type > div::before {
-    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    border-left: 0;
   }
 
   td > div > &:last-of-type > div:before {
-    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    border-right: 0;
   }
 `;

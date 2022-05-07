@@ -57,6 +57,10 @@ const RoutineCell: React.FC<Cell> = ({
           renderInput={(params) => (
             <StyledTextField
               {...params}
+              InputProps={{
+                ...params.InputProps,
+                inputProps: { ...params.inputProps, style: { padding: 4 } }
+              }}
               name={`rows.${row}.columns.${column}.exercise`}
               inputRef={exerciseInput}
               variant='standard'
