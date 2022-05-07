@@ -43,10 +43,28 @@ const RoutineCell: React.FC<Cell> = ({
     });
   };
 
+  const colorByMuscle = new Map([
+    ['Pectoral', '#99ff66'],
+    ['Hombros', '#ccff00'],
+    ['Tríceps', '#66ffff'],
+    ['Espalda', '#00ccff'],
+    ['Bíceps', '#33ff99'],
+    ['Cuádriceps', '#6666ff'],
+    ['Glúteos', '#9900ff'],
+    ['Femoral', '#ff33ff'],
+    ['Gemelos', '#ff00cc']
+  ]);
+
+  const exerciseObject: Exercise =
+    exercises?.find((exercises) => exercises.label === exercise) ||
+    ({} as Exercise);
+  const background: string = colorByMuscle.get(exerciseObject.muscle) || '';
+
   return (
     <TableCell>
-      <StyledCellGrid>
+      <StyledCellGrid style={{ backgroundColor: background }}>
         <Autocomplete
+          className='autocomplete'
           disableClearable
           freeSolo
           selectOnFocus
@@ -59,7 +77,10 @@ const RoutineCell: React.FC<Cell> = ({
               {...params}
               InputProps={{
                 ...params.InputProps,
-                inputProps: { ...params.inputProps, style: { padding: 4 } }
+                inputProps: {
+                  ...params.inputProps,
+                  style: { padding: 4 }
+                }
               }}
               name={`rows.${row}.columns.${column}.exercise`}
               inputRef={exerciseInput}
