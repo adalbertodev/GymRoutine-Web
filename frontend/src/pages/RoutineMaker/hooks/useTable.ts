@@ -1,21 +1,9 @@
-import { ChangeEvent, useCallback, useEffect, useReducer } from 'react';
+import { useContext, useEffect } from 'react';
 import { getExercises } from '../../../services/ExerciseAPI';
-import { tableReducer } from '../contexts/tableReducer';
-import { emptyTable } from '../helpers/emptyTable';
-import { RTable, TableAction, TableState } from '../models/table';
-
-export interface tableHook {
-  table: RTable;
-  dispatch: React.Dispatch<TableAction>;
-}
-
-const initialState: TableState = {
-  table: emptyTable,
-  exercises: []
-};
+import { TableContext } from '../contexts/TableContext';
 
 export const useTable = () => {
-  const [tableState, dispatch] = useReducer(tableReducer, initialState);
+  const { tableState, dispatch, handleInputChange } = useContext(TableContext);
   const { table } = tableState;
 
   useEffect(() => {
@@ -25,18 +13,7 @@ export const useTable = () => {
         payload: exercises
       });
     });
-  }, []);
-
-  const handleInputChange = useCallback(
-    (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-      console.log('a');
-      dispatch({
-        type: 'updateInputValue',
-        payload: { name: e.target.name, value: e.target.value }
-      });
-    },
-    []
-  );
+  }, [dispatch]);
 
   return { tableState, table, dispatch, handleInputChange };
 };

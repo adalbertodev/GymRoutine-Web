@@ -1,8 +1,6 @@
 import { createContext } from 'react';
-import { emptyTable } from '../helpers/emptyTable';
-import { tableHook } from '../hooks/useTable';
+import { TableContextProps } from '../models/routineTableProps';
 
-export const TableContext = createContext<tableHook>({
-  table: emptyTable,
-  dispatch: () => {}
-});
+export const TableContext = createContext<TableContextProps>(
+  {} as TableContextProps
+);

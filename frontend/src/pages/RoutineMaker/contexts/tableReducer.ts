@@ -26,10 +26,7 @@ export const tableReducer = (
       };
 
     case 'updateInputValue':
-      return {
-        ...tableState,
-        table: { ...table, rows: [...table.rows, emptyRow] }
-      };
+      return updateInputValue(tableState, action.payload);
 
     case 'setTable':
       return setTemplate(tableState, action.payload);

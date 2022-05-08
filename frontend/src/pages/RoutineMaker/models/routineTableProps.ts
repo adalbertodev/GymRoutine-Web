@@ -1,7 +1,8 @@
-import { Cell, Row } from './table';
+import { ChangeEvent, Dispatch } from 'react';
+import { Cell, Row, TableAction, TableState } from './table';
 
 export interface RoutineTableProps {
-  rows: Row[];
+  rows?: Row[];
 }
 
 export interface RoutineRowProps {
@@ -18,4 +19,16 @@ export interface RoutineCellProps {
     row: number;
     column: number;
   };
+}
+
+export interface TableProviderProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+export interface TableContextProps {
+  tableState: TableState;
+  dispatch: Dispatch<TableAction>;
+  handleInputChange: (
+    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => void;
 }

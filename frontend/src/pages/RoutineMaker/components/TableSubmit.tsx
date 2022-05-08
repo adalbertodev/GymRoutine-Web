@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import { memo } from 'react';
 import { SaveButton, SubmitBox } from '../styled-components/TableSubmit';
 import { downloadHTML } from '../helpers/downloadHTML';
-import { TableContext } from '../contexts/TableContext';
 import { getRmExercises } from '../../../services/RmExerciseAPI';
+import { useTable } from '../hooks/useTable';
 
-const TableSubmit: React.FC = React.memo(() => {
+const TableSubmit: React.FC = memo(() => {
   // console.log('TableSubmit');
 
-  const { table, dispatch } = useContext(TableContext);
+  const { table, dispatch } = useTable();
 
   const handleAddRow = () => {
     dispatch({
