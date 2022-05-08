@@ -11,8 +11,7 @@ const TableSubmit: React.FC = React.memo(() => {
 
   const handleAddRow = () => {
     dispatch({
-      type: 'addRow',
-      payload: []
+      type: 'addRow'
     });
   };
 

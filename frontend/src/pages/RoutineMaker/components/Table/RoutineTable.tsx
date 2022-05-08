@@ -1,10 +1,12 @@
 import React from 'react';
+import { RoutineTableProps } from '../../models/routineTableProps';
 import { Table, TableContainer } from '../../styled-components/Table';
 import RoutineBody from './RoutineBody';
 import RoutineHead from './RoutineHead';
-import { RTable } from '../../models/RTable';
 
-const RoutineTable: React.FC<RTable> = React.memo(({ rows }) => {
+const RoutineTable: React.FC<RoutineTableProps> = React.memo(({ rows }) => {
+  console.log(rows);
+
   return (
     <TableContainer>
       <Table id='routineTable'>

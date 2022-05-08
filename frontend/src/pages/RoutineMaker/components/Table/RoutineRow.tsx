@@ -1,9 +1,9 @@
 import React from 'react';
-import { Row } from '../../models/Row';
+import { RoutineRowProps } from '../../models/routineTableProps';
 import { TableRow } from '../../styled-components/Table';
 import RoutineCell from './RoutineCell';
 
-const RoutineRow: React.FC<Row> = ({ columns, row }) => {
+const RoutineRow: React.FC<RoutineRowProps> = ({ columns, row }) => {
   const currentRow = row || 0;
 
   return (

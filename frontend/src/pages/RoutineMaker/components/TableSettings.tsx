@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ConfigBox } from '../styled-components/ConfigBox';
 import {
   FormControl,
@@ -12,7 +12,7 @@ import User from '../../../models/User';
 import { useFetch } from '../../../hooks/useFetch';
 import RoutineTemplates from '../data/RoutineTemplates.json';
 import { TableContext } from '../contexts/TableContext';
-import { RTable } from '../models/RTable';
+import { RTable } from '../models/table';
 
 const TableSettings: React.FC<settingsProps> = React.memo(
   ({ activeUserState }) => {

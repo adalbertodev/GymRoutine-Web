@@ -1,25 +1,18 @@
 import { Autocomplete } from '@mui/material';
-import {
-  memo,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef
-} from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import Exercise from '../../../../models/Exercise';
 import {
   StyledCellGrid,
   TableCell,
   StyledTextField
 } from '../../styled-components/Table';
-import { TableContext } from '../../contexts/TableContext';
-import { Cell } from '../../models/Cell';
+import { RoutineCellProps } from '../../models/routineTableProps';
+import { useTable } from '../../hooks/useTable';
 
-const RoutineCell: React.FC<Cell> = memo(
+const RoutineCell: React.FC<RoutineCellProps> = memo(
   ({ exercise, series, repetitions, weight, cell }) => {
-    const { table, dispatch } = useContext(TableContext);
-    const { exercises } = table;
+    const { tableState, handleInputChange } = useTable();
+    const { exercises } = tableState;
     const row = cell?.row || 0;
     const column = cell?.column || 0;
 
@@ -34,15 +27,6 @@ const RoutineCell: React.FC<Cell> = memo(
         let evt = new Event('input', { bubbles: true });
         exerciseInput.current.dispatchEvent(evt);
       }
-    };
-
-    const handleInputChange = (
-      e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-    ) => {
-      dispatch({
-        type: 'changeInput',
-        payload: { name: e.target.name, value: e.target.value }
-      });
     };
 
     const colorByMuscle = useMemo(
