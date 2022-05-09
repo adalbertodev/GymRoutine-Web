@@ -1,10 +1,6 @@
-import {
-  updateInputValue,
-  introduceRM,
-  setTemplate
-} from './tableReducerActions';
-import { emptyRow } from '../helpers/emptyTable';
 import { TableAction, TableState } from '../models/table';
+import { updateTableInputValue } from '../helpers/updateTableInputValue';
+import { updateTableRmField } from '../helpers/updateTableRmField';
 
 export const tableReducer = (
   tableState: TableState,
@@ -16,7 +12,7 @@ export const tableReducer = (
     case 'addRow':
       return {
         ...tableState,
-        table: { ...table, rows: [...table.rows, emptyRow] }
+        table: { ...table, rows: [...table.rows, action.payload] }
       };
 
     case 'setExercises':
@@ -25,14 +21,22 @@ export const tableReducer = (
         exercises: action.payload
       };
 
-    case 'updateInputValue':
-      return updateInputValue(tableState, action.payload);
-
     case 'setTable':
-      return setTemplate(tableState, action.payload);
+      return { ...tableState, table: { ...table, ...action.payload } };
 
-    case 'calculateRm':
-      return introduceRM(tableState, action.payload);
+    case 'updateInputValue':
+      const name = action.payload.name;
+      const value = action.payload.value;
+      return {
+        ...tableState,
+        table: updateTableInputValue(table, name, value)
+      };
+
+    case 'updateRmFields':
+      return {
+        ...tableState,
+        table: updateTableRmField(table, tableState.exercises, action.payload)
+      };
 
     default:
       return tableState;

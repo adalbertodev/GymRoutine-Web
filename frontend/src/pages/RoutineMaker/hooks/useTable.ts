@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { getExercises } from '../../../services/ExerciseAPI';
+import { setExercises } from '../contexts/tableActions';
 import { TableContext } from '../contexts/TableContext';
 
 export const useTable = () => {
@@ -8,10 +9,7 @@ export const useTable = () => {
 
   useEffect(() => {
     getExercises().then((exercises) => {
-      dispatch({
-        type: 'setExercises',
-        payload: exercises
-      });
+      dispatch(setExercises(exercises));
     });
   }, [dispatch]);
 

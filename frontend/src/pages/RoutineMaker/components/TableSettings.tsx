@@ -13,6 +13,7 @@ import { useFetch } from '../../../hooks/useFetch';
 import RoutineTemplates from '../data/RoutineTemplates.json';
 import { TableContext } from '../contexts/TableContext';
 import { RTable } from '../models/table';
+import { setTable } from '../contexts/tableActions';
 
 const TableSettings: React.FC<settingsProps> = React.memo(
   ({ activeUserState }) => {
@@ -41,10 +42,7 @@ const TableSettings: React.FC<settingsProps> = React.memo(
         (template) => template.name === e.target.value
       ) as Template;
 
-      dispatch({
-        type: 'setTable',
-        payload: template.table
-      });
+      dispatch(setTable(template.table));
     };
 
     // console.log('TableSettings');

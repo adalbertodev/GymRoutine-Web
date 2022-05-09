@@ -3,6 +3,7 @@ import { SaveButton, SubmitBox } from '../styled-components/TableSubmit';
 import { downloadHTML } from '../helpers/downloadHTML';
 import { getRmExercises } from '../../../services/RmExerciseAPI';
 import { useTable } from '../hooks/useTable';
+import { addEmptyRow, updateRmFields } from '../contexts/tableActions';
 
 const TableSubmit: React.FC = memo(() => {
   // console.log('TableSubmit');
@@ -10,17 +11,12 @@ const TableSubmit: React.FC = memo(() => {
   const { table, dispatch } = useTable();
 
   const handleAddRow = () => {
-    dispatch({
-      type: 'addRow'
-    });
+    dispatch(addEmptyRow());
   };
 
   const handleCalculateRm = () => {
     getRmExercises().then((rmExercises) => {
-      dispatch({
-        type: 'calculateRm',
-        payload: rmExercises || []
-      });
+      dispatch(updateRmFields(rmExercises));
       console.log(table);
     });
   };

@@ -22,11 +22,11 @@ export interface InputData {
 }
 
 export type TableAction =
-  | { type: 'addRow' }
+  | { type: 'addRow'; payload: Row }
   | { type: 'setExercises'; payload: Exercise[] }
   | { type: 'updateInputValue'; payload: InputData }
   | { type: 'setTable'; payload: RTable }
-  | { type: 'calculateRm'; payload: RmExercise[] };
+  | { type: 'updateRmFields'; payload: RmExercise[] };
 
 export interface TableState {
   table: RTable;
