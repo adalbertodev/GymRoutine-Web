@@ -1,5 +1,6 @@
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
+import { colorByMuscle } from '../utils/colorByMuscle';
 
 export const TableContainer = styled.div`
   background-color: #fff;
@@ -85,7 +86,12 @@ export const StyledCellGrid = styled.div`
   grid-template-columns: 57.5% 10% 12.5% 20%;
 `;
 
-export const TableCell = styled.td`
+interface TableCellProps {
+  muscle: string | undefined;
+}
+
+export const TableCell = styled.td<TableCellProps>`
+  background-color: ${({ muscle }) => muscle && colorByMuscle.get(muscle)};
   /* border-bottom: 1px solid rgba(224, 224, 224, 1); */
   border-right: 1px solid rgba(0, 0, 0, 0.5);
   border-left: 1px solid rgba(0, 0, 0, 0.5);

@@ -1,12 +1,5 @@
 import { Autocomplete } from '@mui/material';
-import {
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  FocusEvent
-} from 'react';
+import { memo, useCallback, useEffect, useRef, FocusEvent } from 'react';
 import Exercise from '../../../../models/Exercise';
 import {
   StyledCellGrid,
@@ -65,45 +58,17 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
       }
     };
 
-    const colorByMuscle = useMemo(
-      () =>
-        new Map([
-          ['Pectoral', '#99ff66'],
-          ['Hombros', '#ccff00'],
-          ['Tríceps', '#66ffff'],
-          ['Espalda', '#00ccff'],
-          ['Bíceps', '#33ff99'],
-          ['Cuádriceps', '#6666ff'],
-          ['Glúteos', '#9900ff'],
-          ['Femoral', '#ff33ff'],
-          ['Gemelos', '#ff00cc']
-        ]),
-      []
-    );
-
-    const styledCell = useRef<HTMLDivElement | null>(null);
-
-    const handleChangeInputColor = useCallback(() => {
-      if (styledCell.current) {
-        const exerciseObject: Exercise =
-          exercises?.find((exercises) => exercises.label === exercise) ||
-          ({} as Exercise);
-        const background: string =
-          colorByMuscle.get(exerciseObject.muscle) || '';
-
-        styledCell.current.style.backgroundColor = background;
-      }
-    }, [colorByMuscle, exercise, exercises]);
-
-    useEffect(() => {
-      handleChangeInputColor();
-    }, [handleChangeInputColor]);
+    const muscle = useCallback(() => {
+      const exerciseObject = exercises.find(
+        (exercises) => exercises.label === exercise
+      );
+      return exerciseObject ? exerciseObject.muscle : '';
+    }, [exercise, exercises]);
 
     return (
-      <TableCell>
-        <StyledCellGrid ref={styledCell}>
+      <TableCell muscle={muscle()}>
+        <StyledCellGrid>
           <Autocomplete
-            className='autocomplete'
             disableClearable
             freeSolo
             selectOnFocus
