@@ -36,7 +36,7 @@ export const tableReducer = (
       return {
         ...tableState,
         table: {
-          ...updateTableRmField(table, tableState.exercises, action.payload)
+          ...updateTableRmField(table, action.payload)
         }
       };
 
