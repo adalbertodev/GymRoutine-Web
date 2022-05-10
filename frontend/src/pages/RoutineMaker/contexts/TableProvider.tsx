@@ -1,17 +1,17 @@
 import { ChangeEvent, useCallback, useReducer } from 'react';
 import { tableReducer } from '../contexts/tableReducer';
 import { emptyTable } from '../utils/emptyTable';
-import { TableProviderProps } from '../models/routineTableProps';
-import { TableState } from '../models/table';
 import { TableContext } from './TableContext';
 
-const initialState: TableState = {
-  table: emptyTable,
-  exercises: []
-};
+export interface TableProviderProps {
+  children: JSX.Element | JSX.Element[];
+}
 
 export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
-  const [tableState, dispatch] = useReducer(tableReducer, initialState);
+  const [tableState, dispatch] = useReducer(tableReducer, {
+    table: emptyTable,
+    exercises: []
+  });
 
   // const timer = useRef<NodeJS.Timer>();
 

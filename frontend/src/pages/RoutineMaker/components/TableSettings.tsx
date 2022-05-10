@@ -15,7 +15,14 @@ import { TableContext } from '../contexts/TableContext';
 import { RTable } from '../models/table';
 import { setTable } from '../contexts/tableActions';
 
-const TableSettings: React.FC<settingsProps> = React.memo(
+interface SettingsProps {
+  activeUserState: [
+    User | undefined,
+    React.Dispatch<React.SetStateAction<User | undefined>>
+  ];
+}
+
+export const TableSettings: React.FC<SettingsProps> = React.memo(
   ({ activeUserState }) => {
     const { dispatch } = useContext(TableContext);
     const [activeUser, setActiveUser] = activeUserState;
@@ -45,8 +52,6 @@ const TableSettings: React.FC<settingsProps> = React.memo(
       dispatch(setTable(template.table));
     };
 
-    // console.log('TableSettings');
-
     useEffect(() => {
       if (users.length !== 0) {
         setActiveUser(users[0]);
@@ -56,10 +61,9 @@ const TableSettings: React.FC<settingsProps> = React.memo(
     return (
       <ConfigBox>
         <FormControl sx={{ m: 1, minWidth: 80 }} size='small'>
-          <InputLabel id='demo-simple-select-autowidth-label'>User</InputLabel>
+          <InputLabel id='simple-select-autowidth-user-label'>User</InputLabel>
           <Select
-            labelId='demo-simple-select-autowidth-label'
-            id='demo-simple-select-autowidth'
+            labelId='simple-select-autowidth-user-label'
             value={activeUser ? activeUser.name : ''}
             onChange={(e) => handleChange(e)}
             autoWidth
@@ -80,12 +84,11 @@ const TableSettings: React.FC<settingsProps> = React.memo(
         </FormControl>
 
         <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
-          <InputLabel id='demo-simple-select-autowidth-label'>
+          <InputLabel id='simple-select-autowidth-template-label'>
             Template
           </InputLabel>
           <Select
-            labelId='demo-simple-select-autowidth-label'
-            id='demo-simple-select-autowidth'
+            labelId='simple-select-autowidth-template-label'
             value={''}
             onChange={(e) => handleTemplateChange(e)}
             // onClick={handleTemplateClick}
@@ -113,12 +116,3 @@ const TableSettings: React.FC<settingsProps> = React.memo(
     );
   }
 );
-
-interface settingsProps {
-  activeUserState: [
-    User | undefined,
-    React.Dispatch<React.SetStateAction<User | undefined>>
-  ];
-}
-
-export default TableSettings;

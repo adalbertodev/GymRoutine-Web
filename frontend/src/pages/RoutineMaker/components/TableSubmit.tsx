@@ -5,9 +5,7 @@ import { getRmExercises } from '../../../services/RmExerciseAPI';
 import { useTable } from '../hooks/useTable';
 import { addEmptyRow, updateRmFields } from '../contexts/tableActions';
 
-const TableSubmit: React.FC = memo(() => {
-  // console.log('TableSubmit');
-
+export const TableSubmit: React.FC = memo(() => {
   const { table, dispatch } = useTable();
 
   const handleAddRow = () => {
@@ -45,5 +43,3 @@ const TableSubmit: React.FC = memo(() => {
     </SubmitBox>
   );
 });
-
-export default TableSubmit;

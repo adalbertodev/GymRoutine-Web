@@ -1,25 +1,28 @@
-import React from 'react';
-import { RoutineRowProps } from '../../models/routineTableProps';
+import { memo } from 'react';
+import { Cell } from '../../models/table';
 import { TableRow } from '../../styled-components/Table';
-import RoutineCell from './RoutineCell';
+import { RoutineCell } from './RoutineCell';
 
-const RoutineRow: React.FC<RoutineRowProps> = ({ columns, row }) => {
-  const currentRow = row || 0;
+interface RoutineRowProps {
+  columns: Cell[];
+  row: number;
+}
 
-  return (
-    <TableRow>
-      {columns.map((column, i) => (
-        <RoutineCell
-          key={`Column ${i}`}
-          exercise={column.exercise}
-          series={column.series}
-          repetitions={column.repetitions}
-          weight={column.weight}
-          cell={{ row: currentRow, column: i }}
-        />
-      ))}
-    </TableRow>
-  );
-};
-
-export default RoutineRow;
+export const RoutineRow: React.FC<RoutineRowProps> = memo(
+  ({ columns, row }) => {
+    return (
+      <TableRow>
+        {columns.map((column, i) => (
+          <RoutineCell
+            key={`Column ${i}`}
+            exercise={column.exercise}
+            series={column.series}
+            repetitions={column.repetitions}
+            weight={column.weight}
+            cell={{ row: row, column: i }}
+          />
+        ))}
+      </TableRow>
+    );
+  }
+);

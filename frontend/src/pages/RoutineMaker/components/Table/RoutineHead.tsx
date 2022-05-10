@@ -1,57 +1,38 @@
-import React from 'react';
-import { TableHead, StyledCellGrid } from '../../styled-components/Table';
-import RoutineHeadRow from './RoutineHeadRow';
+import { memo, useMemo } from 'react';
+import {
+  StyledCellGrid,
+  TableHead,
+  TableHeadCell,
+  TableRow
+} from '../../styled-components/Table';
 
-export interface HeadRow {
-  column1: JSX.Element;
-  column2: JSX.Element;
-  column3: JSX.Element;
-  column4: JSX.Element;
-  column5: JSX.Element;
-}
+export const RoutineHead: React.FC = memo(() => {
+  const headerDays = useMemo(
+    () => ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+    []
+  );
 
-export interface HeadCell {
-  content: JSX.Element;
-}
-
-const RoutineHead: React.FC = () => {
-  const semanalDays: HeadRow = {
-    column1: <>Lunes</>,
-    column2: <>Martes</>,
-    column3: <>Miércoles</>,
-    column4: <>Jueves</>,
-    column5: <>Viernes</>
-  };
-
-  const subSeccions: HeadCell = {
-    content: (
-      <StyledCellGrid>
-        <div>{'Ejercicio'}</div>
-        <div>{'S'}</div>
-        <div>{'R'}</div>
-        <div>{'P'}</div>
-      </StyledCellGrid>
-    )
-  };
+  const headerColumns = useMemo(() => ['Ejercicio', 'S', 'R', 'P'], []);
 
   return (
     <TableHead>
-      <RoutineHeadRow
-        column1={semanalDays.column1}
-        column2={semanalDays.column2}
-        column3={semanalDays.column3}
-        column4={semanalDays.column4}
-        column5={semanalDays.column5}
-      />
-      <RoutineHeadRow
-        column1={subSeccions.content}
-        column2={subSeccions.content}
-        column3={subSeccions.content}
-        column4={subSeccions.content}
-        column5={subSeccions.content}
-      />
+      <TableRow>
+        {headerDays.map((column, i) => (
+          <TableHeadCell key={'DAYS' + i}>{column}</TableHeadCell>
+        ))}
+      </TableRow>
+
+      <TableRow>
+        {headerDays.map((column, i) => (
+          <TableHeadCell key={'HC' + i}>
+            <StyledCellGrid>
+              {headerColumns.map((hColumn, i) => (
+                <div key={'C' + column + i}>{hColumn}</div>
+              ))}
+            </StyledCellGrid>
+          </TableHeadCell>
+        ))}
+      </TableRow>
     </TableHead>
   );
-};
-
-export default RoutineHead;
+});

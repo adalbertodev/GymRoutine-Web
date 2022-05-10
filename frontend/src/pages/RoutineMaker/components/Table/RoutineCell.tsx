@@ -6,15 +6,25 @@ import {
   TableCell,
   StyledTextField
 } from '../../styled-components/Table';
-import { RoutineCellProps } from '../../models/routineTableProps';
 import { useTable } from '../../hooks/useTable';
 
-const RoutineCell: React.FC<RoutineCellProps> = memo(
+interface RoutineCellProps {
+  exercise: string;
+  series: string;
+  repetitions: string;
+  weight: string;
+  cell: {
+    row: number;
+    column: number;
+  };
+}
+
+export const RoutineCell: React.FC<RoutineCellProps> = memo(
   ({ exercise, series, repetitions, weight, cell }) => {
     const { tableState, handleInputChange } = useTable();
     const { exercises } = tableState;
-    const row = cell?.row || 0;
-    const column = cell?.column || 0;
+    const row = cell.row;
+    const column = cell.column;
 
     const exerciseInput = useRef<HTMLInputElement>(null);
 
@@ -118,5 +128,3 @@ const RoutineCell: React.FC<RoutineCellProps> = memo(
     );
   }
 );
-
-export default RoutineCell;
