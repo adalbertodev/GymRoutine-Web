@@ -4,7 +4,6 @@ import { RoutineMakerContainer } from '../styled-components/RoutineMaker';
 import { TableSettings } from './TableSettings';
 import { TableSubmit } from './TableSubmit';
 import User from '../../../models/User';
-import { useTable } from '../hooks/useTable';
 
 interface RoutineMakerProps {
   activeUserState: [
@@ -15,12 +14,10 @@ interface RoutineMakerProps {
 
 export const RoutineMaker: React.FC<RoutineMakerProps> = memo(
   ({ activeUserState }) => {
-    const { table } = useTable();
-
     return (
       <RoutineMakerContainer>
         <TableSettings activeUserState={activeUserState} />
-        <RoutineTable rows={table.rows} />
+        <RoutineTable />
         <TableSubmit />
       </RoutineMakerContainer>
     );

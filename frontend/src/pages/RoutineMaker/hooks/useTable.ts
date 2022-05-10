@@ -4,7 +4,8 @@ import { setExercises } from '../contexts/tableActions';
 import { TableContext } from '../contexts/TableContext';
 
 export const useTable = () => {
-  const { tableState, dispatch, handleInputChange } = useContext(TableContext);
+  const { tableState, dispatch, handleInputChange, handleCellChange } =
+    useContext(TableContext);
   const { table } = tableState;
 
   useEffect(() => {
@@ -13,5 +14,5 @@ export const useTable = () => {
     });
   }, [dispatch]);
 
-  return { tableState, table, dispatch, handleInputChange };
+  return { tableState, table, dispatch, handleInputChange, handleCellChange };
 };

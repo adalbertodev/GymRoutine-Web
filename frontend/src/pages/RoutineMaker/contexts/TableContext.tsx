@@ -7,6 +7,7 @@ export interface TableContextProps {
   handleInputChange: (
     e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
+  handleCellChange: (name: string, value: string) => void;
 }
 
 export const TableContext = createContext<TableContextProps>(

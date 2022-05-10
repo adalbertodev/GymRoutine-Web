@@ -28,8 +28,17 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
     []
   );
 
+  const handleCellChange = useCallback((name: string, value: string) => {
+    dispatch({
+      type: 'updateInputValue',
+      payload: { name: name, value: value }
+    });
+  }, []);
+
   return (
-    <TableContext.Provider value={{ tableState, dispatch, handleInputChange }}>
+    <TableContext.Provider
+      value={{ tableState, dispatch, handleInputChange, handleCellChange }}
+    >
       {children}
     </TableContext.Provider>
   );

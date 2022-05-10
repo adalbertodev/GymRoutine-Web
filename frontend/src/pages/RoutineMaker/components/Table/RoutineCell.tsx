@@ -1,5 +1,12 @@
 import { Autocomplete } from '@mui/material';
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  FocusEvent
+} from 'react';
 import Exercise from '../../../../models/Exercise';
 import {
   StyledCellGrid,
@@ -7,6 +14,8 @@ import {
   StyledTextField
 } from '../../styled-components/Table';
 import { useTable } from '../../hooks/useTable';
+import { useForm } from '../../../../hooks/useForm';
+import { Cell } from '../../models/table';
 
 interface RoutineCellProps {
   exercise: string;
@@ -21,10 +30,27 @@ interface RoutineCellProps {
 
 export const RoutineCell: React.FC<RoutineCellProps> = memo(
   ({ exercise, series, repetitions, weight, cell }) => {
-    const { tableState, handleInputChange } = useTable();
+    const { tableState, handleCellChange } = useTable();
     const { exercises } = tableState;
     const row = cell.row;
     const column = cell.column;
+
+    const { values, handleInputChange, setValues } = useForm<Cell>({
+      exercise,
+      series,
+      repetitions,
+      weight
+    });
+
+    useEffect(() => {
+      setValues({ exercise, series, repetitions, weight });
+    }, [exercise, series, repetitions, weight, setValues]);
+
+    const handleInputBlur = (
+      e: FocusEvent<HTMLTextAreaElement | HTMLInputElement, Element>
+    ) => {
+      handleCellChange(e.target.name, e.target.value);
+    };
 
     const exerciseInput = useRef<HTMLInputElement>(null);
 
@@ -83,7 +109,7 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
             selectOnFocus
             options={exercises ? exercises : []}
             groupBy={(exercise) => exercise.muscle}
-            inputValue={exercise}
+            inputValue={values.exercise}
             onChange={handleAutocompleteChange}
             renderInput={(params) => (
               <StyledTextField
@@ -99,6 +125,7 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
                 inputRef={exerciseInput}
                 variant='standard'
                 onChange={handleInputChange}
+                onBlur={handleInputBlur}
               />
             )}
           />
@@ -106,22 +133,25 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
           <StyledTextField
             name={`rows.${row}.columns.${column}.series`}
             variant='standard'
-            value={series}
+            value={values.series}
             onChange={handleInputChange}
+            onBlur={handleInputBlur}
           />
 
           <StyledTextField
             name={`rows.${row}.columns.${column}.repetitions`}
             variant='standard'
-            value={repetitions}
+            value={values.repetitions}
             onChange={handleInputChange}
+            onBlur={handleInputBlur}
           />
 
           <StyledTextField
             name={`rows.${row}.columns.${column}.weight`}
             variant='standard'
-            value={weight}
+            value={values.weight}
             onChange={handleInputChange}
+            onBlur={handleInputBlur}
           />
         </StyledCellGrid>
       </TableCell>

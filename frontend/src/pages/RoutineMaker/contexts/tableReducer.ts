@@ -22,20 +22,22 @@ export const tableReducer = (
       };
 
     case 'setTable':
-      return { ...tableState, table: { ...table, ...action.payload } };
+      return { ...tableState, table: { ...action.payload } };
 
     case 'updateInputValue':
       const name = action.payload.name;
       const value = action.payload.value;
       return {
         ...tableState,
-        table: updateTableInputValue(table, name, value)
+        table: { ...updateTableInputValue(table, name, value) }
       };
 
     case 'updateRmFields':
       return {
         ...tableState,
-        table: updateTableRmField(table, tableState.exercises, action.payload)
+        table: {
+          ...updateTableRmField(table, tableState.exercises, action.payload)
+        }
       };
 
     default:
