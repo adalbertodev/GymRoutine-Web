@@ -1,14 +1,12 @@
 import { Autocomplete } from '@mui/material';
-import { memo, useCallback, useEffect, useRef, FocusEvent } from 'react';
+import { memo, useEffect, useRef, FocusEvent, useMemo } from 'react';
 import Exercise from '../../../../models/Exercise';
-import {
-  StyledCellGrid,
-  TableCell,
-  StyledTextField
-} from '../../styled-components/Table';
+import { StyledCellGrid, TableCell } from '../../styled-components/Table';
 import { useTable } from '../../hooks/useTable';
 import { useForm } from '../../../../hooks/useForm';
 import { Cell } from '../../models/table';
+import { RoutineInput } from './RoutineInput';
+import { RoutineAutocomplete } from './RoutineAutocomplete';
 
 interface RoutineCellProps {
   exercise: string;
@@ -39,9 +37,7 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
       setValues({ exercise, series, repetitions, weight });
     }, [exercise, series, repetitions, weight, setValues]);
 
-    const handleInputBlur = (
-      e: FocusEvent<HTMLTextAreaElement | HTMLInputElement, Element>
-    ) => {
+    const handleInputBlur = (e: FocusEvent<HTMLInputElement>) => {
       handleCellChange(e.target.name, e.target.value);
     };
 
@@ -58,27 +54,25 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
       }
     };
 
-    const muscle = useCallback(() => {
-      const exerciseObject = exercises.find(
-        (exercises) => exercises.label === exercise
-      );
-      return exerciseObject ? exerciseObject.muscle : '';
-    }, [exercise, exercises]);
+    const muscle = useMemo(
+      () =>
+        exercises.find((exercises) => exercises.label === exercise)?.muscle ||
+        '',
+      [exercise, exercises]
+    );
 
     return (
-      <TableCell muscle={muscle()}>
+      <TableCell muscle={muscle}>
         <StyledCellGrid>
-          <Autocomplete
-            disableClearable
-            freeSolo
-            selectOnFocus
+          <RoutineAutocomplete
             options={exercises ? exercises : []}
             groupBy={(exercise) => exercise.muscle}
             inputValue={values.exercise}
-            onChange={handleAutocompleteChange}
+            handleChange={handleAutocompleteChange}
             renderInput={(params) => (
-              <StyledTextField
+              <RoutineInput
                 {...params}
+                name={`rows.${row}.columns.${column}.exercise`}
                 InputProps={{
                   ...params.InputProps,
                   inputProps: {
@@ -86,37 +80,32 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
                     style: { padding: 4 }
                   }
                 }}
-                name={`rows.${row}.columns.${column}.exercise`}
                 inputRef={exerciseInput}
-                variant='standard'
-                onChange={handleInputChange}
-                onBlur={handleInputBlur}
+                handleInputChange={handleInputChange}
+                handleInputBlur={handleInputBlur}
               />
             )}
           />
 
-          <StyledTextField
+          <RoutineInput
             name={`rows.${row}.columns.${column}.series`}
-            variant='standard'
             value={values.series}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
+            handleInputChange={handleInputChange}
+            handleInputBlur={handleInputBlur}
           />
 
-          <StyledTextField
+          <RoutineInput
             name={`rows.${row}.columns.${column}.repetitions`}
-            variant='standard'
             value={values.repetitions}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
+            handleInputChange={handleInputChange}
+            handleInputBlur={handleInputBlur}
           />
 
-          <StyledTextField
+          <RoutineInput
             name={`rows.${row}.columns.${column}.weight`}
-            variant='standard'
             value={values.weight}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
+            handleInputChange={handleInputChange}
+            handleInputBlur={handleInputBlur}
           />
         </StyledCellGrid>
       </TableCell>

@@ -1,11 +1,11 @@
 export const colorByMuscle = new Map([
-  ['Pectoral', '#99ff66'],
-  ['Hombros', '#ccff00'],
-  ['Tríceps', '#66ffff'],
-  ['Espalda', '#00ccff'],
-  ['Bíceps', '#33ff99'],
-  ['Cuádriceps', '#6666ff'],
-  ['Glúteos', '#9900ff'],
-  ['Femoral', '#ff33ff'],
-  ['Gemelos', '#ff00cc']
+  ['pectoral', '#99ff66'],
+  ['hombros', '#ccff00'],
+  ['tríceps', '#66ffff'],
+  ['espalda', '#00ccff'],
+  ['bíceps', '#33ff99'],
+  ['cuádriceps', '#6666ff'],
+  ['glúteos', '#9900ff'],
+  ['femoral', '#ff33ff'],
+  ['gemelos', '#ff00cc']
 ]);

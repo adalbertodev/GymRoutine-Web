@@ -7,9 +7,11 @@ export const updateTableRmField = (
 ): RTable => {
   table.rows = table.rows.map((row) => {
     const newRow = row.columns.map((column) => {
-      const rmExercise = rmExercises.find(
-        (rmExercise) => column.exercise === rmExercise.exercise.label
-      );
+      const rmExercise = rmExercises.find((rmExercise) => {
+        const tableExercise = column.exercise.trim().toLowerCase();
+        const exercise = rmExercise.exercise.label.trim().toLowerCase();
+        return tableExercise === exercise;
+      });
       const weight = calculateRm(rmExercise) || column.weight;
 
       return { ...column, weight: weight };

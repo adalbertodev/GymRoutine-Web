@@ -6,7 +6,7 @@ import RmExercise from '../../../models/RmExercise';
 export const addEmptyRow = (): TableAction => {
   return {
     type: 'addRow',
-    payload: emptyRow
+    payload: { ...emptyRow }
   };
 };
 
