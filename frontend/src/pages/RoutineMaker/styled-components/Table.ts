@@ -91,8 +91,7 @@ interface TableCellProps {
 }
 
 export const TableCell = styled.td<TableCellProps>`
-  background-color: ${({ muscle }) =>
-    muscle && colorByMuscle.get(muscle.trim().toLowerCase())};
+  background-color: ${({ muscle }) => muscle && colorByMuscle.get(muscle)};
   /* border-bottom: 1px solid rgba(224, 224, 224, 1); */
   border-right: 1px solid rgba(0, 0, 0, 0.5);
   border-left: 1px solid rgba(0, 0, 0, 0.5);

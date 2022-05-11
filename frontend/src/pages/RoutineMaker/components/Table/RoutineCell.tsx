@@ -37,8 +37,11 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
 
     const muscle = useMemo(
       () =>
-        exercises.find((exercises) => exercises.label === exercise)?.muscle ||
-        '',
+        exercises.find((exercises) => {
+          const exercisesLabel = exercises.label.trim().toLowerCase();
+          const exerciseValue = exercise.trim().toLowerCase();
+          return exercisesLabel === exerciseValue;
+        })?.muscle || '',
       [exercise, exercises]
     );
 
