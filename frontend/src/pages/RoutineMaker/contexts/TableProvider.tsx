@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useReducer } from 'react';
+import { ChangeEvent, FocusEvent, useCallback, useReducer } from 'react';
 import { tableReducer } from '../contexts/tableReducer';
 import { emptyTable } from '../utils/emptyTable';
 import { TableContext } from './TableContext';
@@ -35,9 +35,19 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
     });
   }, []);
 
+  const handleInputBlur = (e: FocusEvent<HTMLInputElement>) => {
+    handleCellChange(e.target.name, e.target.value);
+  };
+
   return (
     <TableContext.Provider
-      value={{ tableState, dispatch, handleInputChange, handleCellChange }}
+      value={{
+        tableState,
+        dispatch,
+        handleInputChange,
+        handleCellChange,
+        handleInputBlur
+      }}
     >
       {children}
     </TableContext.Provider>

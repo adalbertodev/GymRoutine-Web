@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext, Dispatch } from 'react';
+import { ChangeEvent, FocusEvent, createContext, Dispatch } from 'react';
 import { TableAction, TableState } from '../models/table';
 
 export interface TableContextProps {
@@ -8,6 +8,7 @@ export interface TableContextProps {
     e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
   handleCellChange: (name: string, value: string) => void;
+  handleInputBlur: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 export const TableContext = createContext<TableContextProps>(

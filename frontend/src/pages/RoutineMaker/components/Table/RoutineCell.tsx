@@ -1,5 +1,4 @@
-import { memo, useEffect, useRef, FocusEvent, useMemo } from 'react';
-import Exercise from '../../../../models/Exercise';
+import { memo, useEffect, useRef, useMemo } from 'react';
 import { StyledCellGrid, TableCell } from '../../styled-components/Table';
 import { useTable } from '../../hooks/useTable';
 import { useForm } from '../../../../hooks/useForm';
@@ -20,10 +19,10 @@ interface RoutineCellProps {
 
 export const RoutineCell: React.FC<RoutineCellProps> = memo(
   ({ exercise, series, repetitions, weight, cell }) => {
-    const { tableState, handleCellChange } = useTable();
+    const { tableState, handleInputBlur } = useTable();
     const { exercises } = tableState;
-    const row = cell.row;
-    const column = cell.column;
+    const { row, column } = cell;
+    const exerciseInput = useRef<HTMLInputElement>(null);
 
     const { values, handleInputChange, setValues } = useForm<Cell>({
       exercise,
@@ -35,23 +34,6 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
     useEffect(() => {
       setValues({ exercise, series, repetitions, weight });
     }, [exercise, series, repetitions, weight, setValues]);
-
-    const handleInputBlur = (e: FocusEvent<HTMLInputElement>) => {
-      handleCellChange(e.target.name, e.target.value);
-    };
-
-    const exerciseInput = useRef<HTMLInputElement>(null);
-
-    const handleAutocompleteChange = (
-      e: React.SyntheticEvent<Element, Event>,
-      value: string | Exercise
-    ) => {
-      if (exerciseInput.current) {
-        exerciseInput.current.setAttribute('value', (value as Exercise).label);
-        let evt = new Event('input', { bubbles: true });
-        exerciseInput.current.dispatchEvent(evt);
-      }
-    };
 
     const muscle = useMemo(
       () =>
@@ -67,7 +49,7 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
             options={exercises ? exercises : []}
             groupBy={(exercise) => exercise.muscle}
             inputValue={values.exercise}
-            handleChange={handleAutocompleteChange}
+            input={exerciseInput}
             renderInput={(params) => (
               <RoutineInput
                 {...params}
