@@ -1,4 +1,3 @@
-import { Autocomplete } from '@mui/material';
 import { memo, useEffect, useRef, FocusEvent, useMemo } from 'react';
 import Exercise from '../../../../models/Exercise';
 import { StyledCellGrid, TableCell } from '../../styled-components/Table';
@@ -81,8 +80,8 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
                   }
                 }}
                 inputRef={exerciseInput}
-                handleInputChange={handleInputChange}
-                handleInputBlur={handleInputBlur}
+                onChange={handleInputChange}
+                onBlur={handleInputBlur}
               />
             )}
           />
@@ -90,22 +89,22 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
           <RoutineInput
             name={`rows.${row}.columns.${column}.series`}
             value={values.series}
-            handleInputChange={handleInputChange}
-            handleInputBlur={handleInputBlur}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
           />
 
           <RoutineInput
             name={`rows.${row}.columns.${column}.repetitions`}
             value={values.repetitions}
-            handleInputChange={handleInputChange}
-            handleInputBlur={handleInputBlur}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
           />
 
           <RoutineInput
             name={`rows.${row}.columns.${column}.weight`}
             value={values.weight}
-            handleInputChange={handleInputChange}
-            handleInputBlur={handleInputBlur}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
           />
         </StyledCellGrid>
       </TableCell>
