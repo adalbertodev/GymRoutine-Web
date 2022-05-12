@@ -4,7 +4,7 @@ import { downloadHTML } from '../helpers/downloadHTML';
 import { getRmExercises } from '../../../services/RmExerciseAPI';
 import { useTable } from '../hooks/useTable';
 import { addEmptyRow, updateRmFields } from '../contexts/tableActions';
-import { TableHandlerButton } from './hoc/TableHandlerButton';
+import { TableHandlerButton } from './inputs/TableHandlerButton';
 
 export const TableHandler: React.FC = memo(() => {
   const { dispatch } = useTable();

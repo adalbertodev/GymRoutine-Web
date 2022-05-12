@@ -16,6 +16,11 @@ export interface RTable {
   rows: Row[];
 }
 
+export interface Template {
+  table: RTable;
+  name: string;
+}
+
 export interface InputData {
   name: string;
   value: string;

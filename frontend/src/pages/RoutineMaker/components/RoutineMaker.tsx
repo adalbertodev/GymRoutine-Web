@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { RoutineTable } from './RoutineTable';
 import { RoutineMakerContainer } from '../styled-components/RoutineMaker';
-import { TableSettings } from './TableSettings';
+import { TableConfigurator } from './TableConfigurator';
 import { TableHandler } from './TableHandler';
 import User from '../../../models/User';
 
@@ -16,7 +16,7 @@ export const RoutineMaker: React.FC<RoutineMakerProps> = memo(
   ({ activeUserState }) => {
     return (
       <RoutineMakerContainer>
-        <TableSettings activeUserState={activeUserState} />
+        <TableConfigurator activeUserState={activeUserState} />
         <RoutineTable />
         <TableHandler />
       </RoutineMakerContainer>

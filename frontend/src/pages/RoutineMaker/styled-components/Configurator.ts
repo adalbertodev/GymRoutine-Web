@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ConfigBox = styled.div`
+export const TableConfiguratorContainer = styled.div`
   display: flex;
   padding: 1rem;
   color: black;

@@ -3,8 +3,8 @@ import { StyledCellGrid, TableCell } from '../../styled-components/Table';
 import { useTable } from '../../hooks/useTable';
 import { useForm } from '../../../../hooks/useForm';
 import { Cell } from '../../models/table';
-import { RoutineInput } from './RoutineInput';
-import { RoutineAutocomplete } from './RoutineAutocomplete';
+import { RoutineInput } from '../inputs/RoutineInput';
+import { RoutineAutocomplete } from '../inputs/RoutineAutocomplete';
 
 interface RoutineCellProps {
   exercise: string;
