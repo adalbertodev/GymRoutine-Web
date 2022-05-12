@@ -6,50 +6,50 @@ import {
   SelectChangeEvent,
   SxProps
 } from '@mui/material';
+import { memo } from 'react';
 import { SelectOption } from '../../models/ui';
 
 interface ConfiguratorSelectProps {
   styles?: SxProps;
   size?: 'small' | 'medium';
-  label: string;
-  value: string;
-  options: SelectOption[];
-  onChange: (e: SelectChangeEvent) => void;
+  label?: string;
+  value?: string | undefined;
+  options?: SelectOption[];
+  onChange?: (e: SelectChangeEvent) => void;
 }
 
-export const ConfiguratorSelect: React.FC<ConfiguratorSelectProps> = ({
-  styles,
-  size,
-  label,
-  value,
-  options,
-  onChange
-}) => {
-  return (
-    <FormControl sx={styles} size={size || 'small'}>
-      <InputLabel id={`simple-select-autowidth-${label.toLowerCase()}-label`}>
-        {label}
-      </InputLabel>
-
-      <Select
-        labelId='simple-select-autowidth-user-label'
-        value={value}
-        onChange={onChange}
-        autoWidth
-        label='User'
-      >
-        {options.length !== 0 ? (
-          options.map((option) => (
-            <MenuItem key={option.id} value={option.name}>
-              {option.name}
-            </MenuItem>
-          ))
-        ) : (
-          <MenuItem value=''>
-            <em>None</em>
-          </MenuItem>
+export const ConfiguratorSelect: React.FC<ConfiguratorSelectProps> = memo(
+  ({ styles, size, label, value, options, onChange }) => {
+    return (
+      <FormControl sx={styles} size={size || 'small'}>
+        {label && (
+          <InputLabel
+            id={`simple-select-autowidth-${label.toLowerCase()}-label`}
+          >
+            {label}
+          </InputLabel>
         )}
-      </Select>
-    </FormControl>
-  );
-};
+
+        <Select
+          labelId='simple-select-autowidth-user-label'
+          value={value || ''}
+          onChange={onChange}
+          autoWidth
+          label='User'
+        >
+          {options && options.length !== 0 ? (
+            options.map((option) => (
+              <MenuItem key={option.id} value={option.name}>
+                {option.name}
+              </MenuItem>
+            ))
+          ) : (
+            <MenuItem value=''>
+              <em>None</em>
+            </MenuItem>
+          )}
+        </Select>
+      </FormControl>
+    );
+  }
+);

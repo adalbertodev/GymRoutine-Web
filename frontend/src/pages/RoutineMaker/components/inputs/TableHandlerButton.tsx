@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   HandlerButton,
   HandlerButtonContainer
@@ -16,16 +17,14 @@ interface TableHandlerButtonProps {
   onClick: () => void;
 }
 
-export const TableHandlerButton: React.FC<TableHandlerButtonProps> = ({
-  children,
-  color,
-  onClick
-}) => {
-  return (
-    <HandlerButtonContainer>
-      <HandlerButton variant='contained' color={color} onClick={onClick}>
-        {children}
-      </HandlerButton>
-    </HandlerButtonContainer>
-  );
-};
+export const TableHandlerButton: React.FC<TableHandlerButtonProps> = memo(
+  ({ children, color, onClick }) => {
+    return (
+      <HandlerButtonContainer>
+        <HandlerButton variant='contained' color={color} onClick={onClick}>
+          {children}
+        </HandlerButton>
+      </HandlerButtonContainer>
+    );
+  }
+);
