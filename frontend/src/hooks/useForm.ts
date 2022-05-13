@@ -11,9 +11,24 @@ export const useForm = <T extends Object>(initialState: T = {} as T) => {
     setValues((formState) => ({ ...formState, [field]: target.value }));
   };
 
+  const handleAutocompleteInputChange = (
+    input: React.RefObject<HTMLInputElement>,
+    value: string
+  ) => {
+    const completeName = input.current?.getAttribute('name') || '';
+    const { field } = splitInputName(completeName);
+    setValues((values) => ({ ...values, [field]: value }));
+  };
+
   const reset = () => {
     setValues(initialState);
   };
 
-  return { values, handleInputChange, reset, setValues };
+  return {
+    values,
+    handleInputChange,
+    handleAutocompleteInputChange,
+    reset,
+    setValues
+  };
 };

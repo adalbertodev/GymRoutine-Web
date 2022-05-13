@@ -7,7 +7,5 @@ interface RoutineInputProps extends StandardTextFieldProps {
 }
 
 export const RoutineInput: React.FC<RoutineInputProps> = memo((params) => {
-  const { value } = params;
-
-  return <StyledTextField {...params} variant='standard' value={value} />;
+  return <StyledTextField {...params} variant='standard' />;
 });

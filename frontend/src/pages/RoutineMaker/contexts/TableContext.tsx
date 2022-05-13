@@ -9,6 +9,7 @@ export interface TableContextProps {
   ) => void;
   handleCellChange: (name: string, value: string) => void;
   handleInputBlur: (e: FocusEvent<HTMLInputElement>) => void;
+  handleAutocompleteInputBlur: (e: FocusEvent<HTMLDivElement>) => void;
 }
 
 export const TableContext = createContext<TableContextProps>(
