@@ -4,20 +4,29 @@ import { splitInputName } from '../pages/RoutineMaker/utils/splitInputName';
 export const useForm = <T extends Object>(initialState: T = {} as T) => {
   const [values, setValues] = useState(initialState);
 
-  const handleInputChange = ({
-    target
-  }: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    const { field } = splitInputName(target.name);
-    setValues((formState) => ({ ...formState, [field]: target.value }));
-  };
-
-  const handleAutocompleteInputChange = (
-    input: React.RefObject<HTMLInputElement>,
-    value: string
+  const handleInputChange = (
+    data:
+      | ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+      | { input: React.RefObject<HTMLInputElement>; value: string }
   ) => {
-    const completeName = input.current?.getAttribute('name') || '';
-    const { field } = splitInputName(completeName);
-    setValues((values) => ({ ...values, [field]: value }));
+    let name: string;
+    let value: string;
+
+    if ((data as ChangeEvent<HTMLInputElement>).target) {
+      data = data as ChangeEvent<HTMLInputElement>;
+      name = data.target.name;
+      value = data.target.value;
+    } else {
+      data = data as {
+        input: React.RefObject<HTMLInputElement>;
+        value: string;
+      };
+      name = data.input.current?.getAttribute('name') || '';
+      value = data.value;
+    }
+
+    const { field } = splitInputName(name);
+    setValues((formState) => ({ ...formState, [field]: value }));
   };
 
   const reset = () => {
@@ -27,7 +36,6 @@ export const useForm = <T extends Object>(initialState: T = {} as T) => {
   return {
     values,
     handleInputChange,
-    handleAutocompleteInputChange,
     reset,
     setValues
   };

@@ -35,12 +35,8 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
     });
   }, []);
 
-  const handleInputBlur = (e: FocusEvent<HTMLInputElement>) => {
-    handleCellChange(e.target.name, e.target.value);
-  };
-
-  const handleAutocompleteInputBlur = (
-    e: FocusEvent<HTMLInputElement | HTMLDivElement>
+  const handleInputBlur = (
+    e: FocusEvent<HTMLTextAreaElement | HTMLInputElement | HTMLDivElement>
   ) => {
     const name = e.target.getAttribute('name') || '';
     const value = e.target.getAttribute('value') || '';
@@ -54,8 +50,7 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
         dispatch,
         handleInputChange,
         handleCellChange,
-        handleInputBlur,
-        handleAutocompleteInputBlur
+        handleInputBlur
       }}
     >
       {children}

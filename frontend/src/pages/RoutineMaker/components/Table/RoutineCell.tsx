@@ -19,18 +19,12 @@ interface RoutineCellProps {
 
 export const RoutineCell: React.FC<RoutineCellProps> = memo(
   ({ exercise, series, repetitions, weight, cell }) => {
-    const { tableState, handleInputBlur, handleAutocompleteInputBlur } =
-      useTable();
+    const { tableState, handleInputBlur } = useTable();
     const { exercises } = tableState;
     const { row, column } = cell;
     const exerciseInput = useRef<HTMLInputElement>(null);
 
-    const {
-      values,
-      handleInputChange,
-      handleAutocompleteInputChange,
-      setValues
-    } = useForm<Cell>({
+    const { values, handleInputChange, setValues } = useForm<Cell>({
       exercise,
       series,
       repetitions,
@@ -60,9 +54,9 @@ export const RoutineCell: React.FC<RoutineCellProps> = memo(
             inputValue={values.exercise}
             input={exerciseInput}
             onInputChange={(e, value) =>
-              handleAutocompleteInputChange(exerciseInput, value)
+              handleInputChange({ input: exerciseInput, value })
             }
-            onBlur={handleAutocompleteInputBlur}
+            onBlur={handleInputBlur}
             renderInput={(params) => (
               <RoutineInput
                 {...params}
