@@ -1,7 +1,14 @@
-import { ChangeEvent, FocusEvent, useCallback, useReducer } from 'react';
+import {
+  ChangeEvent,
+  FocusEvent,
+  useCallback,
+  useEffect,
+  useReducer
+} from 'react';
+import { getExercises } from '../../../services/ExerciseAPI';
 import { tableReducer } from '../contexts/tableReducer';
 import { emptyTable } from '../utils/emptyTable';
-import { updateInputValue } from './tableActions';
+import { setExercises, updateInputValue } from './tableActions';
 import { TableContext } from './TableContext';
 
 export interface TableProviderProps {
@@ -14,6 +21,12 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
     exercises: [],
     difficulty: 5
   });
+
+  useEffect(() => {
+    getExercises().then((exercises) => {
+      dispatch(setExercises(exercises));
+    });
+  }, [dispatch]);
 
   // const timer = useRef<NodeJS.Timer>();
 
