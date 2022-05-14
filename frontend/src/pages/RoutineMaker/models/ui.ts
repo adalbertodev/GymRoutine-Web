@@ -1,4 +1,4 @@
 export interface SelectOption {
   id: string;
-  name: string;
+  name: string | number;
 }

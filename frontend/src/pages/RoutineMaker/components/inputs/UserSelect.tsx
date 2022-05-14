@@ -40,9 +40,9 @@ export const UserSelect: React.FC<UserSelectProps> = memo(
       <ConfiguratorSelect
         styles={{ m: 1, minWidth: 80 }}
         label='User'
-        value={activeUser ? activeUser.name : ''}
+        value={activeUser?.name || ''}
         options={users}
-        onChange={onChange ? onChange : handleChange}
+        onChange={onChange || handleChange}
       />
     );
   }

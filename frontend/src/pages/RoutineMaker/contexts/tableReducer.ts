@@ -21,6 +21,12 @@ export const tableReducer = (
         exercises: action.payload
       };
 
+    case 'changeDifficulty':
+      return {
+        ...tableState,
+        difficulty: action.payload
+      };
+
     case 'setTable':
       return { ...tableState, table: { ...action.payload } };
 

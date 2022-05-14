@@ -17,6 +17,13 @@ export const setExercises = (exercises: Exercise[]): TableAction => {
   };
 };
 
+export const changeDifficulty = (newDfficulty: number): TableAction => {
+  return {
+    type: 'changeDifficulty',
+    payload: newDfficulty
+  };
+};
+
 export const setTable = (table: RTable): TableAction => {
   return {
     type: 'setTable',
@@ -24,10 +31,13 @@ export const setTable = (table: RTable): TableAction => {
   };
 };
 
-export const updateInputValue = (table: RTable): TableAction => {
+export const updateInputValue = (inputData: {
+  name: string;
+  value: string;
+}): TableAction => {
   return {
-    type: 'setTable',
-    payload: table
+    type: 'updateInputValue',
+    payload: inputData
   };
 };
 

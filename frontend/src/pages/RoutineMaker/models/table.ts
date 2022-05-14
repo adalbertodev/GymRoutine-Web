@@ -29,6 +29,7 @@ export interface InputData {
 export type TableAction =
   | { type: 'addRow'; payload: Row }
   | { type: 'setExercises'; payload: Exercise[] }
+  | { type: 'changeDifficulty'; payload: number }
   | { type: 'updateInputValue'; payload: InputData }
   | { type: 'setTable'; payload: RTable }
   | { type: 'updateRmFields'; payload: RmExercise[] };
@@ -36,4 +37,5 @@ export type TableAction =
 export interface TableState {
   table: RTable;
   exercises: Exercise[];
+  difficulty: number;
 }

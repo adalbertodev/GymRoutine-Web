@@ -1,6 +1,7 @@
 import { ChangeEvent, FocusEvent, useCallback, useReducer } from 'react';
 import { tableReducer } from '../contexts/tableReducer';
 import { emptyTable } from '../utils/emptyTable';
+import { updateInputValue } from './tableActions';
 import { TableContext } from './TableContext';
 
 export interface TableProviderProps {
@@ -10,7 +11,8 @@ export interface TableProviderProps {
 export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
   const [tableState, dispatch] = useReducer(tableReducer, {
     table: emptyTable,
-    exercises: []
+    exercises: [],
+    difficulty: 1
   });
 
   // const timer = useRef<NodeJS.Timer>();
@@ -20,19 +22,15 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
       // timer.current && clearTimeout(timer.current);
       // timer.current = setTimeout(() => {
       // }, 2000);
-      dispatch({
-        type: 'updateInputValue',
-        payload: { name: e.target.name, value: e.target.value }
-      });
+      dispatch(
+        updateInputValue({ name: e.target.name, value: e.target.value })
+      );
     },
     []
   );
 
   const handleCellChange = useCallback((name: string, value: string) => {
-    dispatch({
-      type: 'updateInputValue',
-      payload: { name: name, value: value }
-    });
+    dispatch(updateInputValue({ name, value }));
   }, []);
 
   const handleInputBlur = (

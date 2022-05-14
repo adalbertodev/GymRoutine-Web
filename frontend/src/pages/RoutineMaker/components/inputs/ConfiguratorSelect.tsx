@@ -13,7 +13,7 @@ interface ConfiguratorSelectProps {
   styles?: SxProps;
   size?: 'small' | 'medium';
   label?: string;
-  value?: string | undefined;
+  value?: string | number | undefined;
   options?: SelectOption[];
   onChange?: (e: SelectChangeEvent) => void;
 }
@@ -32,10 +32,10 @@ export const ConfiguratorSelect: React.FC<ConfiguratorSelectProps> = memo(
 
         <Select
           labelId='simple-select-autowidth-user-label'
-          value={value || ''}
+          value={value?.toString() || ''}
           onChange={onChange}
           autoWidth
-          label='User'
+          label={label}
         >
           {options && options.length !== 0 ? (
             options.map((option) => (
