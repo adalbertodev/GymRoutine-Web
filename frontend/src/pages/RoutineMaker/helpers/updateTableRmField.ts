@@ -1,10 +1,13 @@
 import RmExercise from '../../../models/RmExercise';
-import { RTable } from '../models/table';
+import { RTable, TableState } from '../models/table';
+import DifficultyMultipliers from '../data/DifficultyMultipliers.json';
 
 export const updateTableRmField = (
-  table: RTable,
+  tableState: TableState,
   rmExercises: RmExercise[]
 ): RTable => {
+  const { table, difficulty } = tableState;
+
   table.rows = table.rows.map((row) => {
     const newRow = row.columns.map((column) => {
       const rmExercise = rmExercises.find((rmExercise) => {
@@ -12,7 +15,9 @@ export const updateTableRmField = (
         const exercise = rmExercise.exercise.label.trim().toLowerCase();
         return tableExercise === exercise;
       });
-      const weight = calculateRm(rmExercise) || column.weight;
+      const weight =
+        calculateRm(rmExercise, column.repetitions, difficulty) ||
+        column.weight;
 
       return { ...column, weight: weight };
     });
@@ -23,12 +28,27 @@ export const updateTableRmField = (
   return { ...table };
 };
 
-const calculateRm = (rmExercise: RmExercise | undefined) => {
+const calculateRm = (
+  rmExercise: RmExercise | undefined,
+  repetitions: string,
+  difficulty: number
+) => {
   if (rmExercise === undefined) {
     return undefined;
   }
+  const difficultyData = DifficultyMultipliers as {
+    difficulty: number;
+    multipliers: {
+      [amount: string]: number;
+    };
+  }[];
 
-  const rm = rmExercise.rm.toString();
+  const difficultySelected = difficultyData.find(
+    (data) => data.difficulty === difficulty
+  );
+  const multiplier = difficultySelected?.multipliers[repetitions] || 1;
 
-  return rm;
+  const calculatedRm = (rmExercise.rm * multiplier).toString();
+
+  return calculatedRm;
 };

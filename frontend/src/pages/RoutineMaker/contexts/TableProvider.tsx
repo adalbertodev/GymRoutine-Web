@@ -12,7 +12,7 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
   const [tableState, dispatch] = useReducer(tableReducer, {
     table: emptyTable,
     exercises: [],
-    difficulty: 1
+    difficulty: 5
   });
 
   // const timer = useRef<NodeJS.Timer>();

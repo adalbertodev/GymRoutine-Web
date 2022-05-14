@@ -42,7 +42,7 @@ export const tableReducer = (
       return {
         ...tableState,
         table: {
-          ...updateTableRmField(table, action.payload)
+          ...updateTableRmField(tableState, action.payload)
         }
       };
 
