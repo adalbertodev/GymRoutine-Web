@@ -1,5 +1,4 @@
 import Exercise from '../../../models/Exercise';
-import RmExercise from '../../../models/RmExercise';
 
 export interface Cell {
   exercise: string;
@@ -32,7 +31,7 @@ export type TableAction =
   | { type: 'changeDifficulty'; payload: number }
   | { type: 'updateInputValue'; payload: InputData }
   | { type: 'setTable'; payload: RTable }
-  | { type: 'updateRmFields'; payload: RmExercise[] };
+  | { type: 'updateRmFields' };
 
 export interface TableState {
   table: RTable;

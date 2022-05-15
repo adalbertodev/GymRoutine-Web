@@ -1,30 +1,20 @@
 import { memo, useCallback } from 'react';
 import { TableHandlerContainer } from '../styled-components/Handler';
 import { downloadHTML } from '../helpers/downloadHTML';
-import { getRmExercises } from '../../../services/RmExerciseAPI';
 import { useTable } from '../hooks/useTable';
 import { addEmptyRow, updateRmFields } from '../contexts/tableActions';
 import { TableHandlerButton } from './inputs/TableHandlerButton';
-import { useApi } from '../../../hooks/useApi';
-import RmExercise from '../../../models/RmExercise';
 
 export const TableHandler: React.FC = memo(() => {
   const { dispatch } = useTable();
-  const { state } = useApi(getRmExercises);
 
   const handleAddRow = useCallback(() => {
     dispatch(addEmptyRow());
   }, [dispatch]);
 
   const handleCalculateRm = useCallback(() => {
-    if (state.data !== null) {
-      dispatch(updateRmFields(state.data as RmExercise[]));
-    }
-
-    // getRmExercises().then((rmExercises) => {
-    //   dispatch(updateRmFields(rmExercises));
-    // });
-  }, [state.data, dispatch]);
+    dispatch(updateRmFields());
+  }, [dispatch]);
 
   return (
     <TableHandlerContainer>
