@@ -18,15 +18,15 @@ public class ExercisePrimitive extends PrimitiveObject {
     private String muscle;
 
     @Getter @Setter
-    private int bar;
+    private Integer bar;
 
     @Getter @Setter
-    private int rm;
+    private Integer rm;
 
     public ExercisePrimitive(
             String userId, String id,
             String name, String muscle,
-            int bar, int rm) {
+            Integer bar, Integer rm) {
         this.userId = userId;
         this.id = id;
         this.name = name;

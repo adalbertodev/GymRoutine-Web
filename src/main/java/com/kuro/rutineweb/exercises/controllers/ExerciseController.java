@@ -29,7 +29,6 @@ public class ExerciseController {
     @GetMapping("/api/exercises/{user_id}&&{id}")
     public ExercisePrimitive findById(@PathVariable("user_id") String user_id, @PathVariable("id") String id) {
         try {
-            System.out.println(user_id);
             return convertToPrimitive(repository.findById(user_id, id));
         } catch (SQLException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

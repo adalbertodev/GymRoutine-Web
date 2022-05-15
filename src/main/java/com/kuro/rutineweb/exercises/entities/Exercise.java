@@ -38,7 +38,7 @@ public class Exercise extends DataItem {
     }
 
     public static Exercise fromPrimitives(String userId, String id, String name,
-                                          String muscle, int bar, int rm) {
+                                          String muscle, Integer bar, Integer rm) {
         return new Exercise(
                 new UserId(userId),
                 new ExerciseId(id),

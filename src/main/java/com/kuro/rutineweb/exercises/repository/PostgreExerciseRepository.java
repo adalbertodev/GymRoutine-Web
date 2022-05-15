@@ -155,8 +155,8 @@ public class PostgreExerciseRepository extends PostgreRepository<Exercise> imple
             String muscle = result.getString("muscle");
             String barValue = result.getString("bar");
             String rmValue = result.getString("rm");
-            int bar = barValue == null ? 0 : Integer.parseInt(barValue);
-            int rm = rmValue == null ? 0 : Integer.parseInt(rmValue);
+            Integer bar = barValue != null ? Integer.parseInt(barValue) : null;
+            Integer rm = rmValue != null ? Integer.parseInt(rmValue) : null;
 
             exercises.add(Exercise.fromPrimitives(userId, id, name, muscle, bar, rm));
         }
