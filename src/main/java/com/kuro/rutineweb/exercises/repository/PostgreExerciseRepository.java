@@ -1,5 +1,6 @@
 package com.kuro.rutineweb.exercises.repository;
 
+import com.kuro.rutineweb.Shared.entities.UserId;
 import com.kuro.rutineweb.Shared.repository.PostgreRepository;
 import com.kuro.rutineweb.exercises.entities.Exercise;
 import com.kuro.rutineweb.exercises.entities.ExerciseId;
@@ -22,9 +23,63 @@ public class PostgreExerciseRepository extends PostgreRepository<Exercise> imple
         return "exercises";
     }
 
+
+
+    @Override
+    public List<Exercise> findAll() throws SQLException {
+        String query = "" +
+                "SELECT " +
+                "user_id, id, name, " +
+                "(SELECT name FROM muscles WHERE id = E.muscle) as muscle, " +
+                "bar, rm " +
+                "FROM " + tableName() + " as E;";
+        return getModelByQuery(query);
+    }
+
+    @Override
+    public Exercise findById(String user_id, String id) throws SQLException {
+        ExerciseId exerciseId = new ExerciseId(id);
+        UserId userId = new UserId(user_id);
+        String query = "" +
+                "SELECT " +
+                "user_id, id, name, " +
+                "(SELECT name FROM muscles WHERE id = E.muscle) as muscle, " +
+                "bar, rm " +
+                "FROM " + tableName() + " as E " +
+                "WHERE E.id = '" + exerciseId + "'" +
+                "AND E.user_id = '" + userId + "';";
+        return getModelByQuery(query).get(0);
+    }
+
+    @Override
+    public List<Exercise> findByUserId(String user_id) throws SQLException {
+        UserId userId = new UserId(user_id);
+        String query = "" +
+                "SELECT " +
+                "user_id, id, name, " +
+                "(SELECT name FROM muscles WHERE id = E.muscle) as muscle, " +
+                "bar, rm " +
+                "FROM " + tableName() + " as E " +
+                "WHERE E.user_id = '" + userId + "';";
+        return getModelByQuery(query);
+    }
+
+    @Override
+    public List<Exercise> findByExerciseId(String id) throws SQLException {
+        ExerciseId exerciseId = new ExerciseId(id);
+        String query = "" +
+                "SELECT " +
+                "user_id, id, name, " +
+                "(SELECT name FROM muscles WHERE id = E.muscle) as muscle, " +
+                "bar, rm " +
+                "FROM " + tableName() + " as E " +
+                "WHERE E.id = '" + exerciseId + "';";
+        return getModelByQuery(query);
+    }
+
     @Override
     public void save(Exercise exercise) throws SQLException {
-        if(existsById(exercise.getId().toString())) {
+        if(existsById(exercise.getUserId().toString(), exercise.getId().toString())) {
             update(exercise);
             return;
         }
@@ -33,11 +88,13 @@ public class PostgreExerciseRepository extends PostgreRepository<Exercise> imple
 
     private void create(Exercise exercise) throws SQLException {
         String query = "" +
-                "INSERT INTO " + tableName() + "(id, name, muscle, bar) VALUES('" +
+                "INSERT INTO " + tableName() + "(user_id, id, name, muscle, bar, rm) VALUES('" +
+                    exercise.getUserId().getValue() + "','" +
                     exercise.getId().getValue() + "','" +
                     exercise.getName().getValue() + "'," +
                     "(SELECT id FROM muscles WHERE name = '" + exercise.getMuscle().getValue() + "')," +
-                    exercise.getBar().getValue() +
+                    exercise.getBar().getValue() + "," +
+                    exercise.getRm().getValue() +
                 ");";
         getModelByQuery(query);
     }
@@ -45,46 +102,24 @@ public class PostgreExerciseRepository extends PostgreRepository<Exercise> imple
     private void update(Exercise exercise) throws SQLException {
         String query = "" +
                 "UPDATE " + tableName() + " SET " +
+                    "user_id = '" + exercise.getUserId().getValue() + "'," +
                     "id = '" + exercise.getId().getValue() + "'," +
                     "name = '" + exercise.getName().getValue() + "'," +
                     "muscle = " + "(SELECT id FROM muscles WHERE name = '" + exercise.getMuscle().getValue() + "')," +
-                    "bar = " + exercise.getBar().getValue() +
+                    "bar = " + exercise.getBar().getValue() + "," +
+                    "rm = " + exercise.getRm().getValue() +
                 "WHERE id = '" + exercise.getId().getValue() + "';";
         getModelByQuery(query);
     }
 
     @Override
-    public Exercise findById(String id) throws SQLException {
-        ExerciseId exerciseId = new ExerciseId(id);
-        String query = "" +
-                "SELECT " +
-                    "id, name, " +
-                    "(SELECT name FROM muscles WHERE id = E.muscle) as muscle, " +
-                    "bar " +
-                    "FROM " + tableName() + " as E " +
-                "WHERE E.id = '" + exerciseId + "';";
-        return getModelByQuery(query).get(0);
-    }
-
-    @Override
-    public boolean existsById(String id) throws SQLException {
+    public boolean existsById(String user_id, String id) throws SQLException {
         try {
-            findById(id);
+            findById(user_id, id);
             return true;
         }catch (Exception e) {
             return false;
         }
-    }
-
-    @Override
-    public List<Exercise> findAll() throws SQLException {
-        String query = "" +
-                "SELECT " +
-                    "user_id, id, name, " +
-                    "(SELECT name FROM muscles WHERE id = E.muscle) as muscle, " +
-                    "bar, rm " +
-                "FROM " + tableName() + " as E;";
-        return getModelByQuery(query);
     }
 
     @Override

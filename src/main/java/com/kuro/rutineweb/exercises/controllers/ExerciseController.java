@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,10 +26,29 @@ public class ExerciseController {
         }
     }
 
-    @GetMapping("/api/exercises/{id}")
-    public ExercisePrimitive findById(@PathVariable String id) {
+    @GetMapping("/api/exercises/{user_id}&&{id}")
+    public ExercisePrimitive findById(@PathVariable("user_id") String user_id, @PathVariable("id") String id) {
         try {
-            return convertToPrimitive(repository.findById(id));
+            System.out.println(user_id);
+            return convertToPrimitive(repository.findById(user_id, id));
+        } catch (SQLException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    @GetMapping("/api/exercises/u={user_id}")
+    public List<ExercisePrimitive> findByUserId(@PathVariable String user_id) {
+        try {
+            return convertToPrimitives(repository.findByUserId(user_id));
+        } catch (SQLException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    @GetMapping("/api/exercises/e={id}")
+    public List<ExercisePrimitive> findByExerciseId(@PathVariable String id) {
+        try {
+            return convertToPrimitives(repository.findByExerciseId(id));
         } catch (SQLException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
