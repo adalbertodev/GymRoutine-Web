@@ -2,7 +2,7 @@ package com.kuro.rutineweb.exercises.repository;
 
 import com.kuro.rutineweb.Shared.repository.PostgreRepository;
 import com.kuro.rutineweb.exercises.entities.Exercise;
-import com.kuro.rutineweb.Shared.entities.ExerciseId;
+import com.kuro.rutineweb.exercises.entities.ExerciseId;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -80,9 +80,9 @@ public class PostgreExerciseRepository extends PostgreRepository<Exercise> imple
     public List<Exercise> findAll() throws SQLException {
         String query = "" +
                 "SELECT " +
-                    "id, name, " +
+                    "user_id, id, name, " +
                     "(SELECT name FROM muscles WHERE id = E.muscle) as muscle, " +
-                    "bar " +
+                    "bar, rm " +
                 "FROM " + tableName() + " as E;";
         return getModelByQuery(query);
     }
@@ -114,13 +114,16 @@ public class PostgreExerciseRepository extends PostgreRepository<Exercise> imple
 
         while (result.next())
         {
+            String userId = result.getString("user_id");
             String id = result.getString("id");
             String name = result.getString("name");
             String muscle = result.getString("muscle");
             String barValue = result.getString("bar");
+            String rmValue = result.getString("rm");
             int bar = barValue == null ? 0 : Integer.parseInt(barValue);
+            int rm = rmValue == null ? 0 : Integer.parseInt(rmValue);
 
-            exercises.add(Exercise.fromPrimitives(id, name, muscle, bar));
+            exercises.add(Exercise.fromPrimitives(userId, id, name, muscle, bar, rm));
         }
         return exercises;
     }

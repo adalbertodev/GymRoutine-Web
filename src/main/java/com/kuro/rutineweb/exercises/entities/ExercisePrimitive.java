@@ -6,6 +6,9 @@ import lombok.Setter;
 
 public class ExercisePrimitive extends PrimitiveObject {
     @Getter @Setter
+    private String userId;
+
+    @Getter @Setter
     private String id;
 
     @Getter @Setter
@@ -17,12 +20,18 @@ public class ExercisePrimitive extends PrimitiveObject {
     @Getter @Setter
     private int bar;
 
+    @Getter @Setter
+    private int rm;
+
     public ExercisePrimitive(
-            String id, String name,
-            String muscle, int bar) {
+            String userId, String id,
+            String name, String muscle,
+            int bar, int rm) {
+        this.userId = userId;
         this.id = id;
         this.name = name;
         this.muscle = muscle;
         this.bar = bar;
+        this.rm = rm;
     }
 }
