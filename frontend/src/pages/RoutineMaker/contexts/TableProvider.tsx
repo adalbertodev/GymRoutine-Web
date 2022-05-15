@@ -5,6 +5,8 @@ import {
   useEffect,
   useReducer
 } from 'react';
+import { useApi } from '../../../hooks/useApi';
+import Exercise from '../../../models/Exercise';
 import { getExercises } from '../../../services/ExerciseAPI';
 import { tableReducer } from '../contexts/tableReducer';
 import { emptyTable } from '../utils/emptyTable';
@@ -21,12 +23,13 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
     exercises: [],
     difficulty: 5
   });
+  const { state } = useApi(getExercises);
 
   useEffect(() => {
-    getExercises().then((exercises) => {
-      dispatch(setExercises(exercises));
-    });
-  }, [dispatch]);
+    if (state.data !== null) {
+      dispatch(setExercises(state.data as Exercise[]));
+    }
+  }, [state.data]);
 
   // const timer = useRef<NodeJS.Timer>();
 

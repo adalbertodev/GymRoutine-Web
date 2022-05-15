@@ -8,13 +8,13 @@ import {
 } from '../adapters/exerciseAdapter';
 
 export const getExercises = async (): Promise<Exercise[]> => {
-  try {
-    const exercises = await get<EndpointExercise>('exercises');
-    return createAddaptedExercises(exercises);
-  } catch (err) {
-    console.error(err);
-    return [];
-  }
+  const exercises = await get<EndpointExercise>('exercises');
+  return createAddaptedExercises(exercises);
+  // try {
+  // } catch (err) {
+  //   console.error(err);
+  //   return [];
+  // }
 };
 
 export const getExerciseById = async (id: string): Promise<Exercise> => {

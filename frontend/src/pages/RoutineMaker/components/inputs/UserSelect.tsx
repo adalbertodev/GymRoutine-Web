@@ -1,5 +1,6 @@
 import { SelectChangeEvent } from '@mui/material';
 import { memo, useEffect, useState } from 'react';
+import { useApi } from '../../../../hooks/useApi';
 import User from '../../../../models/User';
 import { getUsers } from '../../../../services/UserAPI';
 import { ConfiguratorSelect } from './ConfiguratorSelect';
@@ -16,12 +17,13 @@ export const UserSelect: React.FC<UserSelectProps> = memo(
   ({ onChange, activeUserState }) => {
     const [activeUser, setActiveUser] = activeUserState;
     const [users, setUsers] = useState<User[]>([]);
+    const { state } = useApi(getUsers);
 
     useEffect(() => {
-      getUsers().then((users) => {
-        setUsers(users);
-      });
-    }, []);
+      if (state.data !== null) {
+        setUsers(state.data as User[]);
+      }
+    }, [state.data]);
 
     useEffect(() => {
       if (users.length !== 0) {
