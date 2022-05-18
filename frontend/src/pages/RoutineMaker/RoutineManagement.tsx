@@ -11,7 +11,7 @@ export const RoutineMAnagement: React.FC = () => {
   //   `rmExercises/${activeUser ? activeUser.id : ''}`;
 
   return (
-    <TableProvider>
+    <TableProvider activeUser={activeUser}>
       <RoutineMaker activeUserState={[activeUser, setActiveUser]} />
     </TableProvider>
   );

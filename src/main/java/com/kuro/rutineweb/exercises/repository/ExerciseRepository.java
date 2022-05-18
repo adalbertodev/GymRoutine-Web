@@ -8,13 +8,17 @@ import java.util.List;
 
 @Repository
 public interface ExerciseRepository {
+    List<Exercise> findAll() throws SQLException;
+
+    Exercise findById(String user_id, String id) throws SQLException;
+
+    List<Exercise> findByUserId(String user_id) throws SQLException;
+
+    List<Exercise> findByExerciseId(String id) throws SQLException;
+
     void save(Exercise exercise) throws SQLException;
 
-    Exercise findById(String id) throws SQLException;
-
-    boolean existsById(String id) throws SQLException;
-
-    List<Exercise> findAll() throws SQLException;
+    boolean existsById(String user_id, String id) throws SQLException;
 
     long count() throws SQLException;
 

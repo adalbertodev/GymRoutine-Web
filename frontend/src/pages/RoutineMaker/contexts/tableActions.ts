@@ -1,7 +1,6 @@
 import Exercise from '../../../models/Exercise';
 import { emptyRow } from '../utils/emptyTable';
 import { RTable, TableAction } from '../models/table';
-import RmExercise from '../../../models/RmExercise';
 
 export const addEmptyRow = (): TableAction => {
   return {
@@ -41,9 +40,8 @@ export const updateInputValue = (inputData: {
   };
 };
 
-export const updateRmFields = (rmExercises: RmExercise[]): TableAction => {
+export const updateRmFields = (): TableAction => {
   return {
-    type: 'updateRmFields',
-    payload: rmExercises
+    type: 'updateRmFields'
   };
 };

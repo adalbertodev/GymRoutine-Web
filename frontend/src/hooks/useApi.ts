@@ -7,7 +7,9 @@ interface ApiState<T> {
 }
 
 export const useApi = <T extends Object>(
-  apiFunction: () => Promise<T | T[]>
+  apiFunction?: () => Promise<T | T[]>,
+  apiFunctionWithId?: (id: string) => Promise<T | T[]>,
+  id?: string
 ) => {
   const [state, setState] = useState<ApiState<T>>({
     data: null,
@@ -18,14 +20,19 @@ export const useApi = <T extends Object>(
   const request = useCallback(async () => {
     setState((state) => ({ ...state, loading: true }));
     try {
-      const result = await apiFunction();
-      setState((state) => ({ ...state, data: result }));
+      if (id && apiFunctionWithId) {
+        const result = await apiFunctionWithId(id);
+        result && setState((state) => ({ ...state, data: result }));
+      } else if (apiFunction) {
+        const result = await apiFunction();
+        result && setState((state) => ({ ...state, data: result }));
+      }
     } catch (err: any) {
       setState((state) => ({ ...state, error: err.message }));
     } finally {
       setState((state) => ({ ...state, loading: false }));
     }
-  }, [apiFunction]);
+  }, [apiFunction, apiFunctionWithId, id]);
 
   useEffect(() => {
     request();

@@ -34,7 +34,6 @@ export const RoutineAutocomplete: React.FC<RoutineAutocompleteProps<Exercise>> =
           selectOnFocus
           options={options}
           groupBy={groupBy}
-          isOptionEqualToValue={() => true}
           inputValue={inputValue}
           onInputChange={(e, value) =>
             onInputChange && onInputChange(e, value, input)

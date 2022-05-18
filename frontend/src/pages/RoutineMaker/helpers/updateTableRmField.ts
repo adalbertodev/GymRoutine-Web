@@ -1,23 +1,23 @@
-import RmExercise from '../../../models/RmExercise';
 import { RTable, TableState } from '../models/table';
 import DifficultyMultipliers from '../data/DifficultyMultipliers.json';
+import Exercise from '../../../models/Exercise';
 
-export const updateTableRmField = (
-  tableState: TableState,
-  rmExercises: RmExercise[]
-): RTable => {
-  const { table, difficulty } = tableState;
+export const updateTableRmField = (tableState: TableState): RTable => {
+  const { table, exercises, difficulty } = tableState;
 
   table.rows = table.rows.map((row) => {
     const newRow = row.columns.map((column) => {
-      const rmExercise = rmExercises.find((rmExercise) => {
+      if (column.exercise.trim() === '') {
+        return { ...column };
+      }
+
+      const exercise = exercises.find((exercise) => {
         const tableExercise = column.exercise.trim().toLowerCase();
-        const exercise = rmExercise.exercise.label.trim().toLowerCase();
-        return tableExercise === exercise;
+        const exerciseLabel = exercise.label.trim().toLowerCase();
+        return tableExercise === exerciseLabel;
       });
       const weight =
-        calculateRm(rmExercise, column.repetitions, difficulty) ||
-        column.weight;
+        calculateRm(exercise, column.repetitions, difficulty) || column.weight;
 
       return { ...column, weight: weight };
     });
@@ -29,11 +29,11 @@ export const updateTableRmField = (
 };
 
 const calculateRm = (
-  rmExercise: RmExercise | undefined,
+  exercise: Exercise | undefined,
   repetitions: string,
   difficulty: number
 ) => {
-  if (rmExercise === undefined) {
+  if (exercise === undefined || !exercise.rm) {
     return undefined;
   }
   const difficultyData = DifficultyMultipliers as {
@@ -48,7 +48,7 @@ const calculateRm = (
   );
   const multiplier = difficultySelected?.multipliers[repetitions] || 1;
 
-  const calculatedRm = (rmExercise.rm * multiplier).toString();
+  const calculatedRm = (exercise.rm * multiplier).toString();
 
   return calculatedRm;
 };

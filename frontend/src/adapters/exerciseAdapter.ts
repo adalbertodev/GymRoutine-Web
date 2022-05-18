@@ -3,10 +3,12 @@ import EndpointExercise from '../models/EndpointExercise';
 
 export const createAddaptedExercise = (exercise: EndpointExercise) => {
   const formattedExercise: Exercise = {
+    userId: exercise.userId,
     id: exercise.id,
-    label: exercise.name,
     muscle: exercise.muscle,
-    bar: exercise.bar
+    bar: exercise.bar,
+    label: exercise.name,
+    rm: exercise.rm
   };
 
   return formattedExercise;
@@ -22,10 +24,12 @@ export const createAddaptedExercises = (exercises: EndpointExercise[]) => {
 
 export const addaptedToEndpointExercise = (exercise: Exercise) => {
   const unformattedExercise: EndpointExercise = {
+    userId: exercise.userId,
     id: exercise.id,
     name: exercise.label,
     muscle: exercise.muscle,
-    bar: exercise.bar
+    bar: exercise.bar,
+    rm: exercise.rm
   };
 
   return unformattedExercise;

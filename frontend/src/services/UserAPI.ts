@@ -6,7 +6,7 @@ export const getUsers = async (): Promise<User[]> => {
 };
 
 export const getUserById = async (id: string): Promise<User> => {
-  return await getById<User>('users', id);
+  return (await getById<User>('users', id)) as User;
 };
 
 export const postUser = async (user: User): Promise<number> => {

@@ -7,23 +7,28 @@ import {
 } from 'react';
 import { useApi } from '../../../hooks/useApi';
 import Exercise from '../../../models/Exercise';
-import { getExercises } from '../../../services/ExerciseAPI';
+import User from '../../../models/User';
+import { getExerciseByUserId } from '../../../services/ExerciseAPI';
 import { tableReducer } from '../contexts/tableReducer';
 import { emptyTable } from '../utils/emptyTable';
 import { setExercises, updateInputValue } from './tableActions';
 import { TableContext } from './TableContext';
 
 export interface TableProviderProps {
+  activeUser: User | undefined;
   children: JSX.Element | JSX.Element[];
 }
 
-export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
+export const TableProvider: React.FC<TableProviderProps> = ({
+  activeUser,
+  children
+}) => {
   const [tableState, dispatch] = useReducer(tableReducer, {
-    table: emptyTable,
+    table: { ...emptyTable },
     exercises: [],
     difficulty: 5
   });
-  const { state } = useApi(getExercises);
+  const { state } = useApi(undefined, getExerciseByUserId, activeUser?.id);
 
   useEffect(() => {
     if (state.data !== null) {

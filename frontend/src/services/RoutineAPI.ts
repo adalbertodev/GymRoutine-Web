@@ -16,8 +16,30 @@ export const get = async <T>(route: string): Promise<T[]> => {
   }
 };
 
-export const getById = async <T>(route: string, id: string): Promise<T> => {
+export const getById = async <T>(
+  route: string,
+  id: string
+): Promise<T | T[]> => {
   const url = `${process.env.REACT_APP_API_URL}${route}/${id}`;
+
+  try {
+    const { data } = await axios.get<T>(url, {
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    return data;
+  } catch (error) {
+    throw new Error(caughtError(error));
+  }
+};
+
+export const getByComposeId = async <T>(
+  route: string,
+  firstId: string,
+  secondId: string
+): Promise<T> => {
+  const url = `${process.env.REACT_APP_API_URL}${route}/${firstId}&&${secondId}`;
 
   try {
     const { data } = await axios.get<T>(url, {

@@ -13,7 +13,7 @@ export const DifficultySelect: React.FC<DiffcultySelectProps> = memo(
     const { tableState, dispatch } = useTable();
     const { difficulty } = tableState;
 
-    const dfficulties = [
+    const difficulties = [
       { id: '543212345', name: 5 },
       { id: '4321234', name: 4 },
       { id: '32123', name: 3 },
@@ -29,9 +29,9 @@ export const DifficultySelect: React.FC<DiffcultySelectProps> = memo(
     return (
       <ConfiguratorSelect
         styles={{ m: 1, minWidth: 80, textAlign: 'center' }}
-        label='Dfficulty'
+        label='Difficulty'
         value={difficulty}
-        options={dfficulties}
+        options={difficulties}
         onChange={onChange ? onChange : handleChange}
       />
     );

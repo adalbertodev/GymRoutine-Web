@@ -1,5 +1,5 @@
-import { TextField } from '@mui/material';
 import styled from 'styled-components';
+import { RoutineTextField } from '../components/inputs/RoutineTextField';
 import { colorByMuscle } from '../utils/colorByMuscle';
 
 export const TableContainer = styled.div`
@@ -119,9 +119,12 @@ export const TableCell = styled.td<TableCellProps>`
   }
 `;
 
-export const StyledTextField = styled(TextField)`
+export const StyledTextField = styled(RoutineTextField)`
+  height: 100%;
+
   & > div {
-    font-size: 0.94rem;
+    font-size: ${({ fontSize }) => fontSize && fontSize + 'px'};
+    height: 100%;
   }
 
   & > div:before {
@@ -132,6 +135,7 @@ export const StyledTextField = styled(TextField)`
 
   & input {
     padding: 4px 4px 5px 4px;
+    /* height: 100%; */
   }
 
   &:first-of-type > div::before {

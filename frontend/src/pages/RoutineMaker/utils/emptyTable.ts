@@ -8,9 +8,15 @@ export const emptyCell: Cell = {
 };
 
 export const emptyRow: Row = {
-  columns: [emptyCell, emptyCell, emptyCell, emptyCell, emptyCell]
+  columns: [
+    { ...emptyCell },
+    { ...emptyCell },
+    { ...emptyCell },
+    { ...emptyCell },
+    { ...emptyCell }
+  ]
 };
 
 export const emptyTable: RTable = {
-  rows: [emptyRow]
+  rows: [{ ...emptyRow }]
 };

@@ -1,6 +1,13 @@
 import Exercise from '../models/Exercise';
 import EndpointExercise from '../models/EndpointExercise';
-import { deleteById, deleteByObject, get, getById, post } from './RoutineAPI';
+import {
+  deleteById,
+  deleteByObject,
+  get,
+  getByComposeId,
+  getById,
+  post
+} from './RoutineAPI';
 import {
   addaptedToEndpointExercise,
   createAddaptedExercise,
@@ -10,16 +17,35 @@ import {
 export const getExercises = async (): Promise<Exercise[]> => {
   const exercises = await get<EndpointExercise>('exercises');
   return createAddaptedExercises(exercises);
-  // try {
-  // } catch (err) {
-  //   console.error(err);
-  //   return [];
-  // }
 };
 
-export const getExerciseById = async (id: string): Promise<Exercise> => {
-  const exercise = await getById<EndpointExercise>('exercises', id);
+export const getExerciseById = async (
+  userId: string,
+  exerciseId: string
+): Promise<Exercise> => {
+  const exercise = await getByComposeId<EndpointExercise>(
+    'exercises',
+    userId,
+    exerciseId
+  );
   return createAddaptedExercise(exercise);
+};
+
+export const getExerciseByExerciseId = async (
+  exerciseId: string
+): Promise<Exercise[]> => {
+  const exercises = await getById<EndpointExercise>(
+    'exercises',
+    `e=${exerciseId}`
+  );
+  return createAddaptedExercises(exercises as EndpointExercise[]);
+};
+
+export const getExerciseByUserId = async (
+  userId: string
+): Promise<Exercise[]> => {
+  const exercises = await getById<EndpointExercise>('exercises', `u=${userId}`);
+  return createAddaptedExercises(exercises as EndpointExercise[]);
 };
 
 export const postExercise = async (exercise: Exercise): Promise<number> => {
