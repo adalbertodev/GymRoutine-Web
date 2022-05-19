@@ -26,7 +26,7 @@ export const changeDifficulty = (newDfficulty: number): TableAction => {
 export const setTable = (table: RTable): TableAction => {
   return {
     type: 'setTable',
-    payload: table
+    payload: { ...table }
   };
 };
 

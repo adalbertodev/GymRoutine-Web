@@ -28,7 +28,10 @@ export const tableReducer = (
       };
 
     case 'setTable':
-      return { ...tableState, table: { ...action.payload } };
+      return {
+        ...tableState,
+        table: { ...action.payload }
+      };
 
     case 'updateInputValue':
       const name = action.payload.name;

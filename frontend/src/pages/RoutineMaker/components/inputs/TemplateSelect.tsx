@@ -21,10 +21,10 @@ export const TemplateSelect: React.FC<TemplateSelectProps> = memo(
 
     const handleChange = (e: SelectChangeEvent<string>) => {
       const template = templates.find(
-        (template) => template.name === e.target.value
+        ({ ...template }) => template.name === e.target.value
       ) as Template;
 
-      dispatch(setTable(template.table));
+      dispatch(setTable({ ...template.table }));
     };
     return (
       <ConfiguratorSelect
