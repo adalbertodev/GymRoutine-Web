@@ -9,6 +9,12 @@ export const addEmptyRow = (): TableAction => {
   };
 };
 
+export const deleteLastRow = (): TableAction => {
+  return {
+    type: 'deleteRow'
+  };
+};
+
 export const setExercises = (exercises: Exercise[]): TableAction => {
   return {
     type: 'setExercises',

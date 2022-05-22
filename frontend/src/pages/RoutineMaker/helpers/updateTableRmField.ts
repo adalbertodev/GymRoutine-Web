@@ -48,7 +48,11 @@ const calculateRm = (
   );
   const multiplier = difficultySelected?.multipliers[repetitions] || 1;
 
-  const calculatedRm = (exercise.rm * multiplier).toString();
+  const bar = exercise.bar || 0;
+
+  const calculatedRm = (
+    Math.round(((exercise.rm + bar) * multiplier - bar) * 100) / 100
+  ).toString();
 
   return calculatedRm;
 };

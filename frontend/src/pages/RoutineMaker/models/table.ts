@@ -27,6 +27,7 @@ export interface InputData {
 
 export type TableAction =
   | { type: 'addRow'; payload: Row }
+  | { type: 'deleteRow' }
   | { type: 'setExercises'; payload: Exercise[] }
   | { type: 'changeDifficulty'; payload: number }
   | { type: 'updateInputValue'; payload: InputData }

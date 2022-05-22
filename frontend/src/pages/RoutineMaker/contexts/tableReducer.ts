@@ -15,6 +15,12 @@ export const tableReducer = (
         table: { ...table, rows: [...table.rows, action.payload] }
       };
 
+    case 'deleteRow':
+      if (table.rows.length <= 1) {
+        return tableState;
+      }
+      return { ...tableState, table: { rows: [...table.rows.slice(0, -1)] } };
+
     case 'setExercises':
       return {
         ...tableState,

@@ -16,8 +16,7 @@ export const AddRowButton = memo(() => {
       createTheme({
         typography: {
           fontSize: 15,
-          fontWeightMedium: 900,
-          button: { border: '1px solid #0f87ff29' }
+          fontWeightMedium: 900
         },
         palette: {
           info: {
